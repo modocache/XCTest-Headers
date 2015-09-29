@@ -6,17 +6,16 @@
 
 #import <XCTest/XCTest.h>
 
-@class NSMutableArray, NSString;
+@class NSArray, NSMutableArray, NSString;
 
 @interface XCTestSuite : XCTest
 {
-    NSString *name;
-    NSMutableArray *tests;
+    NSString *_name;
+    NSMutableArray *_tests;
 }
 
 + (id)defaultTestSuite;
 + (id)allTests;
-+ (id)structuredTests;
 + (id)testSuiteForTestCaseClass:(Class)arg1;
 + (id)testSuiteForTestCaseWithName:(id)arg1;
 + (id)testSuiteForBundlePath:(id)arg1;
@@ -26,10 +25,11 @@
 + (id)emptyTestSuiteNamedFromPath:(id)arg1;
 + (id)testSuiteWithName:(id)arg1;
 - (void)performTest:(id)arg1;
+- (void)_recordUnexpectedFailureForTestRun:(id)arg1 description:(id)arg2 exception:(id)arg3;
 - (Class)testRunClass;
+- (Class)_requiredTestRunBaseClass;
 - (unsigned long long)testCaseCount;
-- (id)tests;
-- (void)addTestsEnumeratedBy:(id)arg1;
+@property(readonly, copy) NSArray *tests;
 - (void)addTest:(id)arg1;
 - (id)description;
 - (id)name;

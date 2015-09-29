@@ -8,7 +8,7 @@
 
 @interface XCTestCaseSuite : XCTestSuite
 {
-    Class testCaseClass;
+    Class _testCaseClass;
 }
 
 + (id)emptyTestSuiteForTestCaseClass:(Class)arg1;

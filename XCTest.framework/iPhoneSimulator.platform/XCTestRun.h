@@ -6,29 +6,36 @@
 
 #import "NSObject.h"
 
-@class XCTest;
+@class NSDate, XCTest;
 
 @interface XCTestRun : NSObject
 {
-    double startDate;
-    double stopDate;
-    XCTest *test;
+    XCTest *_test;
+    double _startDate;
+    double _stopDate;
+    unsigned long long _executionCount;
+    unsigned long long _failureCount;
+    unsigned long long _unexpectedExceptionCount;
 }
 
 + (id)testRunWithTest:(id)arg1;
-- (id)description;
-- (_Bool)hasSucceeded;
-- (unsigned long long)testCaseCount;
-- (unsigned long long)unexpectedExceptionCount;
-- (unsigned long long)failureCount;
-- (unsigned long long)totalFailureCount;
+- (void)recordFailureWithDescription:(id)arg1 inFile:(id)arg2 atLine:(unsigned long long)arg3 expected:(_Bool)arg4;
+@property(readonly) _Bool hasSucceeded;
+@property(readonly) unsigned long long testCaseCount;
+@property(readonly) unsigned long long unexpectedExceptionCount;
+@property(readonly) unsigned long long failureCount;
+@property(readonly) unsigned long long totalFailureCount;
+@property(readonly) unsigned long long executionCount;
 - (void)stop;
 - (void)start;
-- (id)stopDate;
-- (id)startDate;
-- (double)testDuration;
-- (double)totalDuration;
-- (id)test;
+@property(readonly, copy) NSDate *stopDate;
+@property(readonly, copy) NSDate *startDate;
+@property(readonly) double testDuration;
+@property(readonly) double totalDuration;
+- (_Bool)_hasBeenStopped;
+- (_Bool)_hasBeenStarted;
+@property(readonly) XCTest *test;
+- (id)description;
 - (void)dealloc;
 - (id)initWithTest:(id)arg1;
 

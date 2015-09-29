@@ -6,18 +6,23 @@
 
 #import "NSObject.h"
 
+@class NSString;
+
 @interface XCTest : NSObject
 {
 }
 
-- (id)run;
++ (id)languageAgnosticTestClassNameForTestClass:(Class)arg1;
+@property(readonly) NSString *languageAgnosticTestMethodName;
+@property(readonly) NSString *languageAgnosticTestClassName;
 - (void)tearDown;
 - (void)setUp;
+- (id)run;
 - (void)performTest:(id)arg1;
-- (id)name;
-- (Class)testRunClass;
-- (unsigned long long)testCaseCount;
-- (_Bool)isEmpty;
+@property(readonly) Class testRunClass;
+@property(readonly) Class _requiredTestRunBaseClass;
+@property(readonly, copy) NSString *name;
+@property(readonly) unsigned long long testCaseCount;
 
 @end
 

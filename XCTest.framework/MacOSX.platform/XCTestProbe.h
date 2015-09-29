@@ -14,6 +14,7 @@
 + (void)initialize;
 + (void)_applicationFinishedLaunching:(id)arg1;
 + (void)runTests:(id)arg1;
++ (void)exitTests:(int)arg1;
 + (void)resumeAppSleep:(id)arg1;
 + (id)suspendAppSleep;
 + (void)runTestsAtUnitPath:(id)arg1 scope:(id)arg2;

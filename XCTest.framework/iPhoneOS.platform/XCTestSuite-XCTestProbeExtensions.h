@@ -6,8 +6,10 @@
 
 #import <XCTest/XCTestSuite.h>
 
+@class NSString;
+
 @interface XCTestSuite (XCTestProbeExtensions)
 - (void)removeTestsWithNames:(id)arg1;
-- (void)setName:(id)arg1;
+@property(copy) NSString *name;
 @end
 

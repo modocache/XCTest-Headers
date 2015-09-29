@@ -6,29 +6,28 @@
 
 #import "NSObject.h"
 
-@interface XCTestObserver : NSObject
+#import "XCTestObservation.h"
+
+@class NSString;
+
+@interface XCTestObserver : NSObject <XCTestObservation>
 {
 }
 
-+ (void)initialize;
-+ (void)suspendObservation;
-+ (void)resumeObservation;
-+ (void)tearDownTestObservers;
-+ (void)setUpTestObservers;
-+ (void)removeTestObserverClass:(Class)arg1;
-+ (void)addTestObserverClass:(Class)arg1;
 - (void)testCaseDidFail:(id)arg1 withDescription:(id)arg2 inFile:(id)arg3 atLine:(unsigned long long)arg4;
 - (void)testCaseDidStop:(id)arg1;
 - (void)testCaseDidStart:(id)arg1;
+- (void)testSuiteDidFail:(id)arg1 withDescription:(id)arg2 inFile:(id)arg3 atLine:(unsigned long long)arg4;
 - (void)testSuiteDidStop:(id)arg1;
 - (void)testSuiteDidStart:(id)arg1;
-- (void)_testCaseDidFail:(id)arg1;
-- (void)_testCaseDidStop:(id)arg1;
-- (void)_testCaseDidStart:(id)arg1;
-- (void)_testSuiteDidStop:(id)arg1;
-- (void)_testSuiteDidStart:(id)arg1;
 - (void)stopObserving;
 - (void)startObserving;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 
