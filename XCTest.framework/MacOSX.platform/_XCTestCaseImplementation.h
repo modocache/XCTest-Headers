@@ -6,7 +6,7 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSInvocation, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>, NSString, XCSymbolicationRecord, XCTestCaseRun;
+@class NSArray, NSInvocation, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>, NSString, XCTestCaseRun;
 
 @interface _XCTestCaseImplementation : NSObject
 {
@@ -34,13 +34,13 @@
     NSString *_filePathForUnexpectedFailure;
     unsigned long long _lineNumberForUnexpectedFailure;
     unsigned long long _callAddressForCurrentWait;
-    XCSymbolicationRecord *_symbolicationRecordForLastCreatedExpectation;
+    NSArray *_callAddressesForLastCreatedExpectation;
     NSMutableArray *_failureRecords;
 }
 
 @property(retain, nonatomic) NSMutableArray *failureRecords; // @synthesize failureRecords=_failureRecords;
 @property(nonatomic) NSObject<OS_dispatch_source> *timeoutSource; // @synthesize timeoutSource=_timeoutSource;
-@property(retain, nonatomic) XCSymbolicationRecord *symbolicationRecordForLastCreatedExpectation; // @synthesize symbolicationRecordForLastCreatedExpectation=_symbolicationRecordForLastCreatedExpectation;
+@property(copy) NSArray *callAddressesForLastCreatedExpectation; // @synthesize callAddressesForLastCreatedExpectation=_callAddressesForLastCreatedExpectation;
 @property unsigned long long callAddressForCurrentWait; // @synthesize callAddressForCurrentWait=_callAddressForCurrentWait;
 @property unsigned long long lineNumberForUnexpectedFailure; // @synthesize lineNumberForUnexpectedFailure=_lineNumberForUnexpectedFailure;
 @property(copy) NSString *filePathForUnexpectedFailure; // @synthesize filePathForUnexpectedFailure=_filePathForUnexpectedFailure;
