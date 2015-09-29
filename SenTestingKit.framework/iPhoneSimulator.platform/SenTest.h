@@ -17,7 +17,7 @@
 - (id)name;
 - (Class)testRunClass;
 - (unsigned int)testCaseCount;
-- (BOOL)isEmpty;
+- (_Bool)isEmpty;
 - (void)removeTestsWithNames:(id)arg1;
 
 @end

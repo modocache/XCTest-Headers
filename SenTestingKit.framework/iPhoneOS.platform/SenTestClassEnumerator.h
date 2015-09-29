@@ -12,14 +12,14 @@
 {
     NSMutableArray *classes;
     int currentIndex;
-    BOOL isAtEnd;
+    _Bool isAtEnd;
 }
 
 + (id)classEnumerator;
 - (void)dealloc;
 - (id)nextObject;
 - (id)init;
-- (BOOL)isValidClass:(Class)arg1;
+- (_Bool)isValidClass:(Class)arg1;
 - (id)rejectedClassNames;
 
 @end

@@ -10,7 +10,7 @@
 + (id)senAllInstanceInvocations;
 + (id)senInstanceInvocations;
 + (id)senAllSubclasses;
-+ (BOOL)senIsASuperclassOfClass:(Class)arg1;
++ (_Bool)senIsASuperclassOfClass:(Class)arg1;
 + (id)senAllSuperclasses;
 - (id)senAllInstanceInvocations;
 - (id)senInstanceInvocations;

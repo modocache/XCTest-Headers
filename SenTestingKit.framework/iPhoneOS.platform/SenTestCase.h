@@ -18,15 +18,12 @@
 }
 
 + (id)testInvocations;
-+ (BOOL)isInheritingTestCases;
++ (_Bool)isInheritingTestCases;
 + (id)testCaseWithSelector:(SEL)arg1;
 + (id)testCaseWithInvocation:(id)arg1;
-+ (id)defaultTestSuite;
-+ (void)tearDown;
-+ (void)setUp;
-- (unsigned int)numberOfTestIterationsForTestWithSelector:(SEL)arg1;
-- (void)afterTestIteration:(unsigned int)arg1 selector:(SEL)arg2;
-- (void)beforeTestIteration:(unsigned int)arg1 selector:(SEL)arg2;
+- (unsigned long long)numberOfTestIterationsForTestWithSelector:(SEL)arg1;
+- (void)afterTestIteration:(unsigned long long)arg1 selector:(SEL)arg2;
+- (void)beforeTestIteration:(unsigned long long)arg1 selector:(SEL)arg2;
 - (void)tearDownTestWithSelector:(SEL)arg1;
 - (void)setUpTestWithSelector:(SEL)arg1;
 - (void)performTest:(id)arg1;

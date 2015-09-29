@@ -15,7 +15,7 @@
 + (void)testSuiteDidStart:(id)arg1;
 + (void)testCaseDidStop:(id)arg1;
 + (void)testCaseDidStart:(id)arg1;
-+ (void)testLogWithFormat:(id)arg1 arguments:(void *)arg2;
++ (void)testLogWithFormat:(id)arg1 arguments:(char *)arg2;
 + (void)testLogWithFormat:(id)arg1;
 
 @end

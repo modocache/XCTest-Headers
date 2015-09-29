@@ -9,11 +9,11 @@
 @interface NSInvocation (SenTesting)
 + (void)setTestMethodPrefix:(id)arg1;
 + (id)testMethodPrefix;
-- (int)compare:(id)arg1;
-- (BOOL)hasTestCaseSignature;
+- (long long)compare:(id)arg1;
+- (_Bool)hasTestCaseSignature;
 - (unsigned int)numberOfParameters;
-- (BOOL)hasTestPrefix;
-- (BOOL)isReturningVoid;
+- (_Bool)hasTestPrefix;
+- (_Bool)isReturningVoid;
 - (id)testMethodPrefix;
 @end
 

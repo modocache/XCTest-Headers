@@ -21,7 +21,7 @@
 - (id)description;
 - (void)postNotificationName:(id)arg1;
 - (void)postNotificationName:(id)arg1 userInfo:(id)arg2;
-- (BOOL)hasSucceeded;
+- (_Bool)hasSucceeded;
 - (unsigned int)testCaseCount;
 - (unsigned int)unexpectedExceptionCount;
 - (unsigned int)failureCount;

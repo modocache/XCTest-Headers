@@ -13,6 +13,8 @@
 + (void)load;
 + (void)initialize;
 + (void)runTests:(id)arg1;
++ (void)resumeAppSleep:(id)arg1;
++ (id)suspendAppSleep;
 + (void)runTestsAtUnitPath:(id)arg1 scope:(id)arg2;
 + (id)specifiedTestSuite;
 + (id)multiTestSuiteForScope:(id)arg1 inverse:(BOOL)arg2;

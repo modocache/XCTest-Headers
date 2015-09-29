@@ -7,6 +7,6 @@
 #import "NSFileManager.h"
 
 @interface NSFileManager (SenTestingAdditions)
-- (BOOL)fileExistsAtPathOrLink:(id)arg1;
+- (_Bool)fileExistsAtPathOrLink:(id)arg1;
 @end
 

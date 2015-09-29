@@ -8,7 +8,7 @@
 
 @interface SenInterfaceTestCase : SenTestCase
 {
-    BOOL isInstanciatedInInterface;
+    _Bool isInstanciatedInInterface;
 }
 
 - (void)performTest:(id)arg1;

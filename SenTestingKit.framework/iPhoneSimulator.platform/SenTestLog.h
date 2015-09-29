@@ -15,7 +15,7 @@
 + (void)testSuiteDidStart:(id)arg1;
 + (void)testCaseDidStop:(id)arg1;
 + (void)testCaseDidStart:(id)arg1;
-+ (void)testLogWithFormat:(id)arg1 arguments:(char *)arg2;
++ (void)testLogWithFormat:(id)arg1 arguments:(struct __va_list_tag [1])arg2;
 + (void)testLogWithFormat:(id)arg1;
 
 @end

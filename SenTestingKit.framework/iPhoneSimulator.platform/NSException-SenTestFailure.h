@@ -11,7 +11,7 @@
 + (id)failureInRaise:(id)arg1 exception:(id)arg2 inFile:(id)arg3 atLine:(int)arg4 withDescription:(id)arg5;
 + (id)failureInEqualityBetweenValue:(id)arg1 andValue:(id)arg2 withAccuracy:(id)arg3 inFile:(id)arg4 atLine:(int)arg5 withDescription:(id)arg6;
 + (id)failureInEqualityBetweenObject:(id)arg1 andObject:(id)arg2 inFile:(id)arg3 atLine:(int)arg4 withDescription:(id)arg5;
-+ (id)failureInCondition:(id)arg1 isTrue:(BOOL)arg2 inFile:(id)arg3 atLine:(int)arg4 withDescription:(id)arg5;
++ (id)failureInCondition:(id)arg1 isTrue:(_Bool)arg2 inFile:(id)arg3 atLine:(int)arg4 withDescription:(id)arg5;
 + (id)failureInFile:(id)arg1 atLine:(int)arg2 withDescription:(id)arg3;
 - (id)lineNumber;
 - (id)filePathInProject;
