@@ -29,9 +29,10 @@
 - (id)attributesForElementSnapshot:(id)arg1 attributeList:(id)arg2 error:(id *)arg3;
 - (const struct __AXUIElement *)copyElementRefForElementAtPoint:(struct CGPoint)arg1 error:(id *)arg2;
 - (id)snapshotForApplicationWithPID:(int)arg1 attributeList:(id)arg2 parameters:(id)arg3 error:(id *)arg4;
+- (void)_reparentContextMenusForRootElement:(id)arg1 attributeList:(id)arg2;
 - (id)_snapshotForElement:(struct __AXUIElement *)arg1 withRootElement:(struct __AXUIElement *)arg2 attributeList:(id)arg3 parameters:(id)arg4 error:(id *)arg5;
 - (void)startObservingApplication:(struct __AXUIElement *)arg1;
-- (void)_handleNotification:(id)arg1 elementMatchingPredicate:(struct __AXUIElement *)arg2 info:(id)arg3;
+- (void)_handleNotification:(id)arg1 accessibilityElement:(id)arg2 info:(id)arg3;
 @property(readonly) NSArray *defaultAttributes;
 - (id)init;
 

@@ -17,6 +17,7 @@
     BOOL _isInvalid;
 }
 
++ (id)deviceRecorderWithTransport:(id)arg1;
 + (id)iOSRecorderWithTransport:(id)arg1;
 + (id)macRecorder;
 + (void)initialize;

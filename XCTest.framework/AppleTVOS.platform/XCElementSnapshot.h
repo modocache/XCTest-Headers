@@ -16,11 +16,11 @@
     NSString *_identifier;
     id _value;
     NSString *_placeholderValue;
-    BOOL _enabled;
-    BOOL _selected;
-    BOOL _isMainWindow;
-    BOOL _hasKeyboardFocus;
-    BOOL _hasFocus;
+    _Bool _enabled;
+    _Bool _selected;
+    _Bool _hasFocus;
+    _Bool _isMainWindow;
+    _Bool _hasKeyboardFocus;
     XCUIApplication *_application;
     unsigned long long _generation;
     NSString *_title;
@@ -38,21 +38,21 @@
     struct CGRect _frame;
 }
 
-+ (BOOL)supportsSecureCoding;
-@property BOOL hasFocus; // @synthesize hasFocus=_hasFocus;
-@property BOOL hasKeyboardFocus; // @synthesize hasKeyboardFocus=_hasKeyboardFocus;
++ (_Bool)supportsSecureCoding;
+@property _Bool hasKeyboardFocus; // @synthesize hasKeyboardFocus=_hasKeyboardFocus;
 @property(copy) NSDictionary *additionalAttributes; // @synthesize additionalAttributes=_additionalAttributes;
 @property(copy) NSArray *userTestingAttributes; // @synthesize userTestingAttributes=_userTestingAttributes;
 @property unsigned long long traits; // @synthesize traits=_traits;
-@property BOOL isMainWindow; // @synthesize isMainWindow=_isMainWindow;
+@property _Bool isMainWindow; // @synthesize isMainWindow=_isMainWindow;
 @property(copy) NSArray *children; // @synthesize children=_children;
 @property XCElementSnapshot *parent; // @synthesize parent=_parent;
 @property(retain) XCAccessibilityElement *parentAccessibilityElement; // @synthesize parentAccessibilityElement=_parentAccessibilityElement;
 @property(retain) XCAccessibilityElement *accessibilityElement; // @synthesize accessibilityElement=_accessibilityElement;
+@property _Bool hasFocus; // @synthesize hasFocus=_hasFocus;
 @property long long verticalSizeClass; // @synthesize verticalSizeClass=_verticalSizeClass;
 @property long long horizontalSizeClass; // @synthesize horizontalSizeClass=_horizontalSizeClass;
-@property(getter=isSelected) BOOL selected; // @synthesize selected=_selected;
-@property(getter=isEnabled) BOOL enabled; // @synthesize enabled=_enabled;
+@property(getter=isSelected) _Bool selected; // @synthesize selected=_selected;
+@property(getter=isEnabled) _Bool enabled; // @synthesize enabled=_enabled;
 @property unsigned long long elementType; // @synthesize elementType=_elementType;
 @property(copy) NSString *placeholderValue; // @synthesize placeholderValue=_placeholderValue;
 @property(copy) NSString *label; // @synthesize label=_label;
@@ -60,17 +60,17 @@
 @property(copy) id value; // @synthesize value=_value;
 @property struct CGRect frame; // @synthesize frame=_frame;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
-- (BOOL)_isAncestorOfElement:(id)arg1;
-- (BOOL)_isDescendantOfElement:(id)arg1;
+- (_Bool)_isAncestorOfElement:(id)arg1;
+- (_Bool)_isDescendantOfElement:(id)arg1;
 @property(readonly) NSArray *suggestedHitpoints;
 - (id)_rootElement;
 @property(readonly) struct CGRect visibleFrame;
 @property(readonly) XCElementSnapshot *scrollView;
-- (BOOL)_frameFuzzyMatchesElement:(id)arg1;
-- (BOOL)_fuzzyMatchesElement:(id)arg1;
-- (BOOL)_matchesElement:(id)arg1;
+- (_Bool)_frameFuzzyMatchesElement:(id)arg1;
+- (_Bool)_fuzzyMatchesElement:(id)arg1;
+- (_Bool)_matchesElement:(id)arg1;
 - (id)_allDescendants;
-- (BOOL)hasDescendantMatchingFilter:(CDUnknownBlockType)arg1;
+- (_Bool)hasDescendantMatchingFilter:(CDUnknownBlockType)arg1;
 - (id)descendantsByFilteringWithBlock:(CDUnknownBlockType)arg1;
 - (id)elementSnapshotMatchingAccessibilityElement:(id)arg1;
 - (void)enumerateDescendantsUsingBlock:(CDUnknownBlockType)arg1;
@@ -79,7 +79,7 @@
 @property(readonly, copy) NSString *pathDescription;
 @property(readonly) NSString *recursiveDescriptionIncludingAccessibilityElement;
 @property(readonly) NSString *recursiveDescription;
-- (id)recursiveDescriptionWithIndent:(id)arg1 includeAccessibilityElement:(BOOL)arg2;
+- (id)recursiveDescriptionWithIndent:(id)arg1 includeAccessibilityElement:(_Bool)arg2;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
@@ -88,10 +88,6 @@
 @property(nonatomic) XCUIApplication *application; // @synthesize application=_application;
 - (id)init;
 - (void)dealloc;
-@property(readonly) XCElementSnapshot *window;
-@property(readonly) struct CGPoint hitPointForScrolling;
-@property(readonly) struct CGPoint hitPoint;
-- (id)hitTest:(struct CGPoint)arg1;
 
 @end
 

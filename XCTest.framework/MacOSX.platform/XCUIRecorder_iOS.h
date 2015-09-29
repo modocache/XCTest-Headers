@@ -8,7 +8,7 @@
 
 #import "XCTestManager_IDEInterface.h"
 
-@class DTXConnection, NSObject<OS_dispatch_queue>, XCSourceCodeTreeNode, XCUIRecorderUtilities;
+@class DTXConnection, NSArray, NSObject<OS_dispatch_queue>, XCSourceCodeTreeNode, XCUIRecorderUtilities;
 
 @interface XCUIRecorder_iOS : XCUIRecorder <XCTestManager_IDEInterface>
 {
@@ -24,6 +24,7 @@
 @property long long testProtocolVersion; // @synthesize testProtocolVersion=_testProtocolVersion;
 @property unsigned long long deferredSoftKeyboardTapGeneration; // @synthesize deferredSoftKeyboardTapGeneration=_deferredSoftKeyboardTapGeneration;
 @property(retain) XCSourceCodeTreeNode *deferredSoftKeyboardTapNode; // @synthesize deferredSoftKeyboardTapNode=_deferredSoftKeyboardTapNode;
+@property(retain) NSObject<OS_dispatch_queue> *processingQueue; // @synthesize processingQueue=_processingQueue;
 @property(retain) DTXConnection *connection; // @synthesize connection=_connection;
 @property(retain) XCUIRecorderUtilities *utilities; // @synthesize utilities=_utilities;
 @property(retain) id <XCTestManager_DaemonConnectionInterface> daemonProxy; // @synthesize daemonProxy=_daemonProxy;
@@ -48,7 +49,7 @@
 - (id)elementSnapshotParameters;
 - (id)applicationSnapshotParameters;
 - (void)postGestureNode:(id)arg1 isSoftKeyTap:(BOOL)arg2;
-- (void)postNode:(id)arg1 replaceLastNode:(BOOL)arg2;
+- (void)postNodes:(id)arg1 replaceLastNode:(BOOL)arg2;
 - (id)_XCT_exchangeCurrentProtocolVersion:(id)arg1 minimumVersion:(id)arg2;
 - (id)_XCT_recordedFirstResponderChangedWithApplicationSnapshot:(id)arg1;
 - (id)_XCT_recordedOrientationChange:(id)arg1;
@@ -60,6 +61,8 @@
 - (id)_methodNameSimpleTargetGestureNames;
 - (void)invalidate;
 - (void)recordTargetProcessPID:(int)arg1 forLanguage:(unsigned long long)arg2 reservedNames:(id)arg3 withBlock:(CDUnknownBlockType)arg4;
+- (unsigned long long)platform;
+@property(readonly) NSArray *defaultAttributes;
 - (id)initWithTransport:(id)arg1;
 
 @end

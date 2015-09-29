@@ -20,6 +20,7 @@
     _Bool _selected;
     _Bool _isMainWindow;
     _Bool _hasKeyboardFocus;
+    _Bool _hasFocus;
     XCUIApplication *_application;
     unsigned long long _generation;
     NSString *_title;
@@ -38,6 +39,7 @@
 }
 
 + (_Bool)supportsSecureCoding;
+@property _Bool hasFocus; // @synthesize hasFocus=_hasFocus;
 @property _Bool hasKeyboardFocus; // @synthesize hasKeyboardFocus=_hasKeyboardFocus;
 @property(copy) NSDictionary *additionalAttributes; // @synthesize additionalAttributes=_additionalAttributes;
 @property(copy) NSArray *userTestingAttributes; // @synthesize userTestingAttributes=_userTestingAttributes;
@@ -70,6 +72,7 @@
 - (id)_allDescendants;
 - (_Bool)hasDescendantMatchingFilter:(CDUnknownBlockType)arg1;
 - (id)descendantsByFilteringWithBlock:(CDUnknownBlockType)arg1;
+- (id)elementSnapshotMatchingAccessibilityElement:(id)arg1;
 - (void)enumerateDescendantsUsingBlock:(CDUnknownBlockType)arg1;
 @property(readonly, copy) NSString *truncatedValueString;
 @property(readonly, copy) NSString *compactDescription;

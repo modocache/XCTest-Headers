@@ -32,6 +32,9 @@
 - (id)typeStringNodeForString:(id)arg1;
 - (id)stringForKeyModifierFlags:(unsigned long long)arg1;
 - (id)simpleGestureNodeForMethodName:(id)arg1;
+- (id)assertHasFocusNode;
+- (id)remoteNodeWithButtonSymbolName:(id)arg1;
+- (id)commentNodeWithString:(id)arg1;
 - (id)applicationNode;
 - (id)focusedAccessibilityElementForApplicationSnapshot:(id)arg1;
 - (id)snapshotsForAccessibilityElement:(id)arg1 applicationSnapshot:(id)arg2;
