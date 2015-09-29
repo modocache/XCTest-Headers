@@ -6,16 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSMutableArray;
+@class NSMutableSet;
 
 @interface XCTestObservationCenter : NSObject
 {
-    NSMutableArray *_observerClasses;
-    NSArray *_observers;
-    BOOL _isSuspended;
+    id _internalImplementation;
 }
 
-+ (id)sharedObservationCenter;
++ (id)sharedTestObservationCenter;
+- (void)_testCase:(id)arg1 didFinishActivity:(id)arg2;
+- (void)_testCase:(id)arg1 willStartActivity:(id)arg2;
 - (void)_testCaseDidFail:(id)arg1 withDescription:(id)arg2 inFile:(id)arg3 atLine:(unsigned long long)arg4;
 - (void)_testCase:(id)arg1 didMeasureValues:(id)arg2 forPerformanceMetricID:(id)arg3 name:(id)arg4 unitsOfMeasurement:(id)arg5 baselineName:(id)arg6 baselineAverage:(id)arg7 maxPercentRegression:(id)arg8 maxPercentRelativeStandardDeviation:(id)arg9 maxRegression:(id)arg10 maxStandardDeviation:(id)arg11 file:(id)arg12 line:(unsigned long long)arg13;
 - (void)_testCaseDidStop:(id)arg1;
@@ -27,11 +27,12 @@
 - (void)_suspendObservation;
 - (void)_resumeObservation;
 - (void)_observeTestExecutionForBlock:(CDUnknownBlockType)arg1;
-- (void)_tearDownTestObservers;
-- (void)_setUpTestObservers;
-- (id)_observerClassesFromObserverClassNames:(id)arg1;
-- (void)removeTestObserverClass:(Class)arg1;
-- (void)addTestObserverClass:(Class)arg1;
+- (void)_instantiateObserversFromObserverClassNames:(id)arg1;
+- (void)removeTestObserver:(id)arg1;
+- (void)addTestObserver:(id)arg1;
+- (void)_addLegacyTestObserver:(id)arg1;
+@property BOOL suspended;
+@property(readonly) NSMutableSet *observers;
 - (id)description;
 - (id)init;
 

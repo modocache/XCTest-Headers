@@ -6,11 +6,9 @@
 
 #import <XCTest/XCTestObserver.h>
 
-#import "XCTestObservation.h"
+@class NSFileHandle;
 
-@class NSFileHandle, NSString;
-
-@interface XCTestLog : XCTestObserver <XCTestObservation>
+@interface XCTestLog : XCTestObserver
 {
 }
 
@@ -22,18 +20,11 @@
 - (void)testSuiteDidFail:(id)arg1 withDescription:(id)arg2 inFile:(id)arg3 atLine:(unsigned long long)arg4;
 - (void)testSuiteDidStop:(id)arg1;
 - (void)testSuiteDidStart:(id)arg1;
-- (void)stopObserving;
-- (void)startObserving;
 - (void)_testDidFail:(id)arg1 withDescription:(id)arg2 inFile:(id)arg3 atLine:(unsigned long long)arg4;
 - (void)testLogWithFormat:(id)arg1 arguments:(char *)arg2;
 - (void)testLogWithFormat:(id)arg1;
 @property(readonly) NSFileHandle *logFileHandle;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
+- (id)dateFormatter;
 
 @end
 

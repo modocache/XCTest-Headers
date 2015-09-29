@@ -10,25 +10,7 @@
 {
 }
 
-+ (void)load;
-+ (void)initialize;
-+ (void)_applicationFinishedLaunching:(id)arg1;
-+ (void)runTests:(id)arg1;
-+ (void)exitTests:(int)arg1;
-+ (void)resumeAppSleep:(id)arg1;
-+ (id)suspendAppSleep;
-+ (void)runTestsAtUnitPath:(id)arg1 scope:(id)arg2;
-+ (id)specifiedTestSuite;
-+ (id)multiTestSuiteForScope:(id)arg1 inverse:(_Bool)arg2;
-+ (id)testCaseNamesForScopeNames:(id)arg1;
-+ (id)testedBundlePath;
 + (_Bool)isTesting;
-+ (_Bool)isInverseTestScope;
-+ (id)testScope;
-+ (id)_scopeDictionary;
-+ (_Bool)isLoadedFromTool;
-+ (_Bool)isProcessActingAsTestRig;
-+ (_Bool)isLoadedFromApplication;
 
 @end
 

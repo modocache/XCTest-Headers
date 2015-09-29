@@ -14,6 +14,7 @@
     NSMutableArray *_tests;
 }
 
++ (id)testSuiteForTestConfiguration:(id)arg1;
 + (id)defaultTestSuite;
 + (id)allTests;
 + (id)testSuiteForTestCaseClass:(Class)arg1;
@@ -24,10 +25,14 @@
 + (id)_suiteForBundleCache;
 + (id)emptyTestSuiteNamedFromPath:(id)arg1;
 + (id)testSuiteWithName:(id)arg1;
++ (id)testCaseNamesForScopeNames:(id)arg1;
+- (id)_initWithTestConfiguration:(id)arg1;
+- (void)_sortTestsUsingComparator:(CDUnknownBlockType)arg1;
 - (void)performTest:(id)arg1;
 - (void)_recordUnexpectedFailureForTestRun:(id)arg1 description:(id)arg2 exception:(id)arg3;
 - (Class)testRunClass;
 - (Class)_requiredTestRunBaseClass;
+- (BOOL)isEqual:(id)arg1;
 - (unsigned long long)testCaseCount;
 @property(readonly, copy) NSArray *tests;
 - (void)addTest:(id)arg1;

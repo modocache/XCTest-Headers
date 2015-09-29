@@ -6,7 +6,7 @@
 
 #import <XCTest/XCTestExpectation.h>
 
-@class NSString;
+@class NSLock, NSString;
 
 @interface _XCKVOExpectation : XCTestExpectation
 {
@@ -15,6 +15,7 @@
     id _expectedValue;
     CDUnknownBlockType _handler;
     BOOL _hasUnregistered;
+    NSLock *_lock;
 }
 
 @property BOOL hasUnregistered; // @synthesize hasUnregistered=_hasUnregistered;
@@ -27,6 +28,7 @@
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)_safelyUnregister;
 - (void)startObserving;
+- (id)_initForTestCase:(id)arg1 withDescription:(id)arg2;
 
 @end
 

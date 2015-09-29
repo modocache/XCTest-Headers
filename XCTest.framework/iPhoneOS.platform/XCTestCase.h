@@ -6,7 +6,7 @@
 
 #import <XCTest/XCTest.h>
 
-@class NSInvocation, XCTestCaseRun, _XCTestCaseImplementation;
+@class NSInvocation, XCTestCaseRun, XCTestContext, _XCTestCaseImplementation;
 
 @interface XCTestCase : XCTest
 {
@@ -16,11 +16,18 @@
 + (id)_baselineDictionary;
 + (_Bool)_treatMissingBaselinesAsTestFailures;
 + (id)defaultPerformanceMetrics;
++ (_Bool)_reportPerformanceFailuresForLargeImprovements;
++ (_Bool)_enableSymbolication;
 + (id)testInvocations;
 + (_Bool)isInheritingTestCases;
 + (id)testCaseWithSelector:(SEL)arg1;
 + (id)testCaseWithInvocation:(id)arg1;
-@property _XCTestCaseImplementation *internalImplementation; // @synthesize internalImplementation=_internalImplementation;
+@property(retain) _XCTestCaseImplementation *internalImplementation; // @synthesize internalImplementation=_internalImplementation;
+- (void)removeUIInterruptionMonitor:(id)arg1;
+- (id)addUIInterruptionMonitorWithDescription:(id)arg1 handler:(CDUnknownBlockType)arg2;
+@property(readonly) XCTestContext *testContext;
+@property(readonly) unsigned long long activityRecordStackDepth;
+- (void)startActivityWithTitle:(id)arg1 block:(CDUnknownBlockType)arg2;
 - (void)measureMetrics:(id)arg1 automaticallyStartMeasuring:(_Bool)arg2 forBlock:(CDUnknownBlockType)arg3;
 - (void)_logAndReportPerformanceMetrics:(id)arg1 perfMetricResultsForIDs:(id)arg2 withBaselinesForTest:(id)arg3 defaultBaselinesForPerfMetricID:(id)arg4;
 - (void)_recordValues:(id)arg1 forPerformanceMetricID:(id)arg2 name:(id)arg3 unitsOfMeasurement:(id)arg4 baselineName:(id)arg5 baselineAverage:(id)arg6 maxPercentRegression:(id)arg7 maxPercentRelativeStandardDeviation:(id)arg8 maxRegression:(id)arg9 maxStandardDeviation:(id)arg10 file:(id)arg11 line:(unsigned long long)arg12;
@@ -46,11 +53,14 @@
 - (void)_enqueueFailureWithDescription:(id)arg1 inFile:(id)arg2 atLine:(unsigned long long)arg3 expected:(_Bool)arg4;
 - (void)_dequeueFailures;
 - (void)recordFailureWithDescription:(id)arg1 inFile:(id)arg2 atLine:(unsigned long long)arg3 expected:(_Bool)arg4;
+- (void)_interruptTest;
+@property(nonatomic) _Bool shouldHaltWhenReceivesControl;
 @property _Bool continueAfterFailure;
 @property(retain) XCTestCaseRun *testCaseRun;
 @property(retain) NSInvocation *invocation;
 - (void)dealloc;
 - (id)description;
+- (_Bool)isEqual:(id)arg1;
 - (id)nameForLegacyLogging;
 - (id)name;
 - (id)languageAgnosticTestMethodName;

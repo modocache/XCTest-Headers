@@ -9,15 +9,17 @@
 #import "XCTestDriverInterface.h"
 #import "XCTestManager_TestsInterface.h"
 
-@class DTXConnection, NSObject<OS_dispatch_queue>, NSString, NSUUID, NSXPCConnection, XCTestSuite;
+@class DTXConnection, NSObject<OS_dispatch_queue>, NSString, NSUUID, NSXPCConnection, XCTestConfiguration, XCTestSuite;
 
 @interface XCTestDriver : NSObject <XCTestManager_TestsInterface, XCTestDriverInterface>
 {
     XCTestSuite *_currentTestSuite;
+    XCTestConfiguration *_currentTestConfiguration;
     CDUnknownBlockType _completionHandler;
     NSXPCConnection *_managerConnection;
     BOOL _connectionInProgress;
     BOOL _waitingToStart;
+    BOOL _hasIDEConnection;
     BOOL _runningSuite;
     NSObject<OS_dispatch_queue> *_managerQueue;
     NSUUID *_sessionIdentifier;
@@ -25,17 +27,22 @@
     DTXConnection *_IDEConnection;
     id <XCTestManager_IDEInterface> _IDEProxy;
     long long _IDEProtocolVersion;
+    unsigned long long _daemonProtocolVersion;
     int _daemonAvailabilityToken;
 }
 
 + (id)sharedTestDriver;
-@property(readonly) long long IDEProtocolVersion; // @synthesize IDEProtocolVersion=_IDEProtocolVersion;
+@property unsigned long long daemonProtocolVersion; // @synthesize daemonProtocolVersion=_daemonProtocolVersion;
+@property BOOL hasIDEConnection; // @synthesize hasIDEConnection=_hasIDEConnection;
+@property BOOL waitingToStart; // @synthesize waitingToStart=_waitingToStart;
+@property long long IDEProtocolVersion; // @synthesize IDEProtocolVersion=_IDEProtocolVersion;
 @property(readonly) id <XCTestManager_IDEInterface> IDEProxy; // @synthesize IDEProxy=_IDEProxy;
-@property DTXConnection *IDEConnection; // @synthesize IDEConnection=_IDEConnection;
+@property(retain) DTXConnection *IDEConnection; // @synthesize IDEConnection=_IDEConnection;
 @property(retain) NSUUID *sessionIdentifier; // @synthesize sessionIdentifier=_sessionIdentifier;
 @property XCTestSuite *currentTestSuite; // @synthesize currentTestSuite=_currentTestSuite;
+- (void)_XCT_applicationWithBundleID:(id)arg1 didUpdatePID:(int)arg2 andState:(unsigned long long)arg3;
 - (id)_IDE_startExecutingTestPlanWithProtocolVersion:(id)arg1;
-- (id)_IDE_startExecutingTestPlanWhenReady;
+- (void)runTestConfiguration:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)runTestSuite:(id)arg1 completionHandler:(CDUnknownBlockType)arg2;
 - (void)_checkForTestManager;
 - (void)_connectToTestManager;

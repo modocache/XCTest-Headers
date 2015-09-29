@@ -7,7 +7,8 @@
 @class NSUUID;
 
 @protocol XCTestManager_ManagerInterface
-- (void)_XCT_requestNSXPListenerEndpointFromAuxiliaryFrameworkWithReply:(void (^)(NSXPCListenerEndpoint *, NSString *))arg1;
+- (void)_XCT_requestBackgroundAssertionWithReply:(void (^)(void))arg1;
 - (void)_XCT_requestSocketForSessionIdentifier:(NSUUID *)arg1 reply:(void (^)(NSFileHandle *))arg2;
+- (void)_XCT_exchangeProtocolVersion:(unsigned long long)arg1 reply:(void (^)(unsigned long long))arg2;
 @end
 

@@ -13,11 +13,17 @@
     unsigned long long _lineNumber;
     NSString *_filePath;
     NSString *_symbolName;
+    NSString *_symbolOwner;
 }
 
++ (id)symbolicationRecordFromRemoteServiceForAddress:(unsigned long long)arg1;
++ (id)symbolicationRecordForTask:(unsigned int)arg1 address:(unsigned long long)arg2;
 + (id)symbolicationRecordForAddress:(unsigned long long)arg1;
++ (void)_setCurrentProcessIsRemoteService;
++ (id)_symbolicationRecordForSymbolicator:(struct _CSTypeRef)arg1 address:(unsigned long long)arg2;
 + (id)failureRecord;
 + (_Bool)softLinkCoreSymbolication;
+@property(copy) NSString *symbolOwner; // @synthesize symbolOwner=_symbolOwner;
 @property(copy) NSString *symbolName; // @synthesize symbolName=_symbolName;
 @property(copy) NSString *filePath; // @synthesize filePath=_filePath;
 @property unsigned long long lineNumber; // @synthesize lineNumber=_lineNumber;

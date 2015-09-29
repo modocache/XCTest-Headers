@@ -6,14 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSInvocation, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>, NSString, XCTestCaseRun;
+@class NSArray, NSInvocation, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>, NSString, XCTestCaseRun, XCTestContext;
 
 @interface _XCTestCaseImplementation : NSObject
 {
     NSInvocation *_invocation;
     XCTestCaseRun *_testCaseRun;
     _Bool _continueAfterFailure;
-    unsigned long long _numberOfTestIterations;
     NSMutableSet *_expectations;
     NSMutableArray *_fulfillments;
     NSObject<OS_dispatch_source> *_timeoutSource;
@@ -35,16 +34,25 @@
     unsigned long long _lineNumberForUnexpectedFailure;
     unsigned long long _callAddressForCurrentWait;
     NSArray *_callAddressesForLastCreatedExpectation;
+    long long _runLoopNestingCount;
     NSMutableArray *_failureRecords;
+    _Bool _shouldHaltWhenReceivesControl;
+    _Bool _shouldIgnoreSubsequentFailures;
+    NSMutableArray *_activityRecordStack;
+    XCTestContext *_testContext;
 }
 
+@property(readonly) XCTestContext *testContext; // @synthesize testContext=_testContext;
+@property(retain, nonatomic) NSMutableArray *activityRecordStack; // @synthesize activityRecordStack=_activityRecordStack;
+@property _Bool shouldIgnoreSubsequentFailures; // @synthesize shouldIgnoreSubsequentFailures=_shouldIgnoreSubsequentFailures;
+@property _Bool shouldHaltWhenReceivesControl; // @synthesize shouldHaltWhenReceivesControl=_shouldHaltWhenReceivesControl;
 @property(retain, nonatomic) NSMutableArray *failureRecords; // @synthesize failureRecords=_failureRecords;
+@property long long runLoopNestingCount; // @synthesize runLoopNestingCount=_runLoopNestingCount;
 @property(nonatomic) NSObject<OS_dispatch_source> *timeoutSource; // @synthesize timeoutSource=_timeoutSource;
 @property(copy) NSArray *callAddressesForLastCreatedExpectation; // @synthesize callAddressesForLastCreatedExpectation=_callAddressesForLastCreatedExpectation;
 @property unsigned long long callAddressForCurrentWait; // @synthesize callAddressForCurrentWait=_callAddressForCurrentWait;
 @property unsigned long long lineNumberForUnexpectedFailure; // @synthesize lineNumberForUnexpectedFailure=_lineNumberForUnexpectedFailure;
 @property(copy) NSString *filePathForUnexpectedFailure; // @synthesize filePathForUnexpectedFailure=_filePathForUnexpectedFailure;
-@property unsigned long long numberOfTestIterations; // @synthesize numberOfTestIterations=_numberOfTestIterations;
 @property(copy) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
 @property double timeoutDuration; // @synthesize timeoutDuration=_timeoutDuration;
 @property _Bool waiting; // @synthesize waiting=_waiting;

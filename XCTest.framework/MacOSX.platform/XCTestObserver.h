@@ -6,11 +6,7 @@
 
 #import "NSObject.h"
 
-#import "XCTestObservation.h"
-
-@class NSString;
-
-@interface XCTestObserver : NSObject <XCTestObservation>
+@interface XCTestObserver : NSObject
 {
 }
 
@@ -22,12 +18,6 @@
 - (void)testSuiteDidStart:(id)arg1;
 - (void)stopObserving;
 - (void)startObserving;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

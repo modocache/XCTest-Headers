@@ -9,7 +9,7 @@
 @class NSString;
 
 @interface XCTest (ReportingAdditions)
-@property(readonly) NSString *testMethodName;
-@property(readonly) NSString *testClassName;
+@property(readonly) NSString *_methodNameForReporting;
+@property(readonly) NSString *_classNameForReporting;
 @end
 
