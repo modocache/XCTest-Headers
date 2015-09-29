@@ -13,6 +13,7 @@
 }
 
 + (id)languageAgnosticTestClassNameForTestClass:(Class)arg1;
+@property(readonly) NSString *nameForLegacyLogging;
 @property(readonly) NSString *languageAgnosticTestMethodName;
 @property(readonly) NSString *languageAgnosticTestClassName;
 - (void)tearDown;

@@ -58,6 +58,7 @@
 @property(retain) NSInvocation *invocation;
 - (void)dealloc;
 - (id)description;
+- (id)nameForLegacyLogging;
 - (id)name;
 - (id)languageAgnosticTestMethodName;
 - (unsigned long long)testCaseCount;
