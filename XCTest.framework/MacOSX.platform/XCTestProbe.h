@@ -24,6 +24,7 @@
 + (BOOL)isTesting;
 + (BOOL)isInverseTestScope;
 + (id)testScope;
++ (id)_scopeDictionary;
 + (BOOL)isLoadedFromTool;
 + (BOOL)isProcessActingAsTestRig;
 + (BOOL)isLoadedFromApplication;
