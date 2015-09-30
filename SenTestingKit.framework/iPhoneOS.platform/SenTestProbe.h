@@ -14,9 +14,11 @@
 + (BOOL)isProcessActingAsTestRig;
 + (BOOL)isLoadedFromTool;
 + (id)testScope;
++ (BOOL)isInverseTestScope;
 + (BOOL)isTesting;
 + (id)testedBundlePath;
-+ (id)multiTestSuiteForScope:(id)arg1;
++ (id)testCaseNamesForScopeNames:(id)arg1;
++ (id)multiTestSuiteForScope:(id)arg1 inverse:(BOOL)arg2;
 + (id)specifiedTestSuite;
 + (void)runTestsAtUnitPath:(id)arg1 scope:(id)arg2;
 + (void)runTests:(id)arg1;

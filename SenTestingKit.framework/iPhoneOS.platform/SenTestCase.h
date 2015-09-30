@@ -44,6 +44,11 @@
 - (Class)testRunClass;
 - (void)invokeTest;
 - (void)performTest:(id)arg1;
+- (void)setUpTestWithSelector:(SEL)arg1;
+- (void)tearDownTestWithSelector:(SEL)arg1;
+- (void)beforeTestIteration:(unsigned int)arg1 selector:(SEL)arg2;
+- (void)afterTestIteration:(unsigned int)arg1 selector:(SEL)arg2;
+- (unsigned int)numberOfTestIterationsForTestWithSelector:(SEL)arg1;
 
 @end
 
