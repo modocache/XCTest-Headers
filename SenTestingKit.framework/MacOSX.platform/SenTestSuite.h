@@ -38,6 +38,8 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithName:(id)arg1;
+- (void)removeTestsWithNames:(id)arg1;
+- (void)setName:(id)arg1;
 
 @end
 

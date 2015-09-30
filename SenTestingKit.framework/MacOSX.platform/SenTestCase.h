@@ -19,10 +19,16 @@
 
 + (id)testInvocations;
 + (BOOL)isInheritingTestCases;
-+ (void)tearDown;
-+ (void)setUp;
 + (id)testCaseWithSelector:(SEL)arg1;
 + (id)testCaseWithInvocation:(id)arg1;
++ (id)defaultTestSuite;
++ (void)tearDown;
++ (void)setUp;
+- (unsigned long long)numberOfTestIterationsForTestWithSelector:(SEL)arg1;
+- (void)afterTestIteration:(unsigned long long)arg1 selector:(SEL)arg2;
+- (void)beforeTestIteration:(unsigned long long)arg1 selector:(SEL)arg2;
+- (void)tearDownTestWithSelector:(SEL)arg1;
+- (void)setUpTestWithSelector:(SEL)arg1;
 - (void)performTest:(id)arg1;
 - (void)invokeTest;
 - (Class)testRunClass;

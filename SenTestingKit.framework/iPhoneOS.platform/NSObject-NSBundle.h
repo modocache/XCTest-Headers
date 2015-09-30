@@ -6,13 +6,7 @@
 
 #import "NSObject.h"
 
-@interface SenClassWrapper : NSObject
-{
-    Class _wrappedClass;
-}
-
-- (Class)wrappedClass;
-- (id)initWithWrappedClass:(Class)arg1;
-
+@interface NSObject (NSBundle)
++ (id)bundle;
 @end
 

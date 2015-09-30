@@ -18,7 +18,8 @@
 + (void)initialize;
 + (void)suspendObservation;
 + (void)resumeObservation;
-+ (void)setCurrentObserver:(Class)arg1;
++ (void)removeTestObserver:(Class)arg1;
++ (void)addTestObserver:(Class)arg1;
 
 @end
 
