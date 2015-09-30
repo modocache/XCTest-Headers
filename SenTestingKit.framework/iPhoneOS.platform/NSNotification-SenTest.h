@@ -7,8 +7,8 @@
 #import "NSNotification.h"
 
 @interface NSNotification (SenTest)
-- (id)run;
-- (id)test;
 - (id)exception;
+- (id)test;
+- (id)run;
 @end
 

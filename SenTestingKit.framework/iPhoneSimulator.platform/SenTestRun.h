@@ -18,25 +18,25 @@
 }
 
 + (id)testRunWithTest:(id)arg1;
-- (id)initWithTest:(id)arg1;
-- (void)dealloc;
-- (id)initWithCoder:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)test;
-- (double)totalDuration;
-- (double)testDuration;
-- (id)startDate;
-- (id)stopDate;
-- (void)start;
-- (void)stop;
-- (unsigned int)totalFailureCount;
-- (unsigned int)failureCount;
-- (unsigned int)unexpectedExceptionCount;
-- (unsigned int)testCaseCount;
-- (BOOL)hasSucceeded;
-- (void)postNotificationName:(id)arg1 userInfo:(id)arg2;
-- (void)postNotificationName:(id)arg1;
 - (id)description;
+- (void)postNotificationName:(id)arg1;
+- (void)postNotificationName:(id)arg1 userInfo:(id)arg2;
+- (BOOL)hasSucceeded;
+- (unsigned int)testCaseCount;
+- (unsigned int)unexpectedExceptionCount;
+- (unsigned int)failureCount;
+- (unsigned int)totalFailureCount;
+- (void)stop;
+- (void)start;
+- (id)stopDate;
+- (id)startDate;
+- (double)testDuration;
+- (double)totalDuration;
+- (id)test;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (void)dealloc;
+- (id)initWithTest:(id)arg1;
 
 @end
 

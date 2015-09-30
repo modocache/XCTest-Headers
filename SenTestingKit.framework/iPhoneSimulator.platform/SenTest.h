@@ -10,14 +10,15 @@
 {
 }
 
-- (BOOL)isEmpty;
-- (unsigned int)testCaseCount;
-- (Class)testRunClass;
-- (id)name;
-- (void)performTest:(id)arg1;
-- (void)setUp;
-- (void)tearDown;
 - (id)run;
+- (void)tearDown;
+- (void)setUp;
+- (void)performTest:(id)arg1;
+- (id)name;
+- (Class)testRunClass;
+- (unsigned int)testCaseCount;
+- (BOOL)isEmpty;
+- (void)removeTestsWithNames:(id)arg1;
 
 @end
 

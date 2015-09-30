@@ -12,9 +12,9 @@
 }
 
 + (id)emptyTestSuiteForTestCaseClass:(Class)arg1;
-- (id)initWithTestCaseClass:(Class)arg1;
-- (void)setUp;
 - (void)tearDown;
+- (void)setUp;
+- (id)initWithTestCaseClass:(Class)arg1;
 
 @end
 

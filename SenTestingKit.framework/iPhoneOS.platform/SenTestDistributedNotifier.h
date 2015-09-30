@@ -10,14 +10,14 @@
 {
 }
 
-+ (id)notificationIdentifier;
-+ (id)userInfoForObject:(id)arg1 userInfo:(id)arg2;
-+ (void)postNotificationName:(id)arg1 object:(id)arg2 userInfo:(id)arg3;
-+ (void)testSuiteDidStart:(id)arg1;
-+ (void)testSuiteDidStop:(id)arg1;
-+ (void)testCaseDidStart:(id)arg1;
-+ (void)testCaseDidStop:(id)arg1;
 + (void)testCaseDidFail:(id)arg1;
++ (void)testCaseDidStop:(id)arg1;
++ (void)testCaseDidStart:(id)arg1;
++ (void)testSuiteDidStop:(id)arg1;
++ (void)testSuiteDidStart:(id)arg1;
++ (void)postNotificationName:(id)arg1 object:(id)arg2 userInfo:(id)arg3;
++ (id)userInfoForObject:(id)arg1 userInfo:(id)arg2;
++ (id)notificationIdentifier;
 - (void)postNotificationName:(id)arg1 userInfo:(id)arg2;
 
 @end

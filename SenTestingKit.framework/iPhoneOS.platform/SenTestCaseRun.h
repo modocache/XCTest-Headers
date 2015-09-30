@@ -15,16 +15,16 @@
     unsigned int unexpectedExceptionCount;
 }
 
-- (id)initWithTest:(id)arg1;
-- (void)dealloc;
-- (id)initWithCoder:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (id)exceptions;
-- (void)start;
-- (void)stop;
-- (unsigned int)failureCount;
-- (unsigned int)unexpectedExceptionCount;
 - (void)addException:(id)arg1;
+- (unsigned int)unexpectedExceptionCount;
+- (unsigned int)failureCount;
+- (void)stop;
+- (void)start;
+- (id)exceptions;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (void)dealloc;
+- (id)initWithTest:(id)arg1;
 
 @end
 

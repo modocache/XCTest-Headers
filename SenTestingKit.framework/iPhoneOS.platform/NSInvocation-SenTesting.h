@@ -7,13 +7,13 @@
 #import "NSInvocation.h"
 
 @interface NSInvocation (SenTesting)
-+ (id)testMethodPrefix;
 + (void)setTestMethodPrefix:(id)arg1;
-- (id)testMethodPrefix;
-- (BOOL)isReturningVoid;
-- (BOOL)hasTestPrefix;
-- (unsigned int)numberOfParameters;
-- (BOOL)hasTestCaseSignature;
++ (id)testMethodPrefix;
 - (int)compare:(id)arg1;
+- (BOOL)hasTestCaseSignature;
+- (unsigned int)numberOfParameters;
+- (BOOL)hasTestPrefix;
+- (BOOL)isReturningVoid;
+- (id)testMethodPrefix;
 @end
 

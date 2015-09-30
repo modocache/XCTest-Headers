@@ -10,16 +10,16 @@
 {
 }
 
-+ (void)addTestObserver:(Class)arg1;
-+ (void)removeTestObserver:(Class)arg1;
-+ (void)resumeObservation;
-+ (void)suspendObservation;
-+ (void)initialize;
-+ (void)testSuiteDidStart:(id)arg1;
-+ (void)testSuiteDidStop:(id)arg1;
-+ (void)testCaseDidStart:(id)arg1;
-+ (void)testCaseDidStop:(id)arg1;
 + (void)testCaseDidFail:(id)arg1;
++ (void)testCaseDidStop:(id)arg1;
++ (void)testCaseDidStart:(id)arg1;
++ (void)testSuiteDidStop:(id)arg1;
++ (void)testSuiteDidStart:(id)arg1;
++ (void)initialize;
++ (void)suspendObservation;
++ (void)resumeObservation;
++ (void)removeTestObserver:(Class)arg1;
++ (void)addTestObserver:(Class)arg1;
 
 @end
 

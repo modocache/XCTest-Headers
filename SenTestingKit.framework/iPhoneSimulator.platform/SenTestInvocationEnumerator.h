@@ -15,12 +15,12 @@
 }
 
 + (id)instanceInvocationEnumeratorForClass:(Class)arg1;
-- (void)goNextMethodList;
-- (id)initForClass:(Class)arg1;
-- (void)dealloc;
-- (void)finalize;
-- (id)nextObject;
 - (id)allObjects;
+- (id)nextObject;
+- (void)finalize;
+- (void)dealloc;
+- (id)initForClass:(Class)arg1;
+- (void)goNextMethodList;
 
 @end
 

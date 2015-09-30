@@ -7,14 +7,14 @@
 #import "NSObject.h"
 
 @interface NSObject (SenTestRuntimeUtilities)
-+ (id)senAllSuperclasses;
-+ (BOOL)senIsASuperclassOfClass:(Class)arg1;
-+ (id)senAllSubclasses;
-+ (id)senInstanceInvocations;
 + (id)senAllInstanceInvocations;
-- (id)senAllSuperclasses;
-- (id)senAllSubclasses;
-- (id)senInstanceInvocations;
++ (id)senInstanceInvocations;
++ (id)senAllSubclasses;
++ (BOOL)senIsASuperclassOfClass:(Class)arg1;
++ (id)senAllSuperclasses;
 - (id)senAllInstanceInvocations;
+- (id)senInstanceInvocations;
+- (id)senAllSubclasses;
+- (id)senAllSuperclasses;
 @end
 

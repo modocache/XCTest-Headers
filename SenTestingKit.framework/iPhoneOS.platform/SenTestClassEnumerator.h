@@ -16,11 +16,11 @@
 }
 
 + (id)classEnumerator;
-- (id)rejectedClassNames;
-- (BOOL)isValidClass:(Class)arg1;
-- (id)init;
-- (id)nextObject;
 - (void)dealloc;
+- (id)nextObject;
+- (id)init;
+- (BOOL)isValidClass:(Class)arg1;
+- (id)rejectedClassNames;
 
 @end
 

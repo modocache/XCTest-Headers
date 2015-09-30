@@ -13,17 +13,17 @@
     NSMutableArray *runs;
 }
 
-- (id)initWithTest:(id)arg1;
-- (void)dealloc;
-- (id)initWithCoder:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (void)start;
-- (void)stop;
-- (id)testRuns;
-- (void)addTestRun:(id)arg1;
-- (unsigned int)failureCount;
-- (unsigned int)unexpectedExceptionCount;
 - (double)testDuration;
+- (unsigned int)unexpectedExceptionCount;
+- (unsigned int)failureCount;
+- (void)addTestRun:(id)arg1;
+- (id)testRuns;
+- (void)stop;
+- (void)start;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (void)dealloc;
+- (id)initWithTest:(id)arg1;
 
 @end
 

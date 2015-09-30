@@ -16,28 +16,30 @@
     NSMutableArray *tests;
 }
 
-+ (id)testSuiteWithName:(id)arg1;
-+ (id)emptyTestSuiteNamedFromPath:(id)arg1;
-+ (void)updateCache;
-+ (void)invalidateCache;
-+ (id)suiteForBundleCache;
-+ (id)testSuiteForBundlePath:(id)arg1;
-+ (id)testSuiteForTestCaseWithName:(id)arg1;
-+ (id)testSuiteForTestCaseClass:(Class)arg1;
-+ (id)structuredTests;
-+ (id)allTests;
 + (id)defaultTestSuite;
-- (id)initWithName:(id)arg1;
-- (id)initWithCoder:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
-- (void)dealloc;
-- (id)name;
-- (id)description;
-- (void)addTest:(id)arg1;
-- (void)addTestsEnumeratedBy:(id)arg1;
-- (unsigned int)testCaseCount;
-- (Class)testRunClass;
++ (id)allTests;
++ (id)structuredTests;
++ (id)testSuiteForTestCaseClass:(Class)arg1;
++ (id)testSuiteForTestCaseWithName:(id)arg1;
++ (id)testSuiteForBundlePath:(id)arg1;
++ (id)suiteForBundleCache;
++ (void)invalidateCache;
++ (void)updateCache;
++ (id)emptyTestSuiteNamedFromPath:(id)arg1;
++ (id)testSuiteWithName:(id)arg1;
 - (void)performTest:(id)arg1;
+- (Class)testRunClass;
+- (unsigned int)testCaseCount;
+- (void)addTestsEnumeratedBy:(id)arg1;
+- (void)addTest:(id)arg1;
+- (id)description;
+- (id)name;
+- (void)dealloc;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithName:(id)arg1;
+- (void)removeTestsWithNames:(id)arg1;
+- (void)setName:(id)arg1;
 
 @end
 

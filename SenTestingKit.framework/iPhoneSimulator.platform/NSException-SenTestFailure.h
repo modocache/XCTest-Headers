@@ -7,17 +7,17 @@
 #import "NSException.h"
 
 @interface NSException (SenTestFailure)
-+ (id)failureInFile:(id)arg1 atLine:(int)arg2 withDescription:(id)arg3;
-+ (id)failureInCondition:(id)arg1 isTrue:(BOOL)arg2 inFile:(id)arg3 atLine:(int)arg4 withDescription:(id)arg5;
-+ (id)failureInEqualityBetweenObject:(id)arg1 andObject:(id)arg2 inFile:(id)arg3 atLine:(int)arg4 withDescription:(id)arg5;
-+ (id)failureInEqualityBetweenValue:(id)arg1 andValue:(id)arg2 withAccuracy:(id)arg3 inFile:(id)arg4 atLine:(int)arg5 withDescription:(id)arg6;
-+ (id)failureInRaise:(id)arg1 exception:(id)arg2 inFile:(id)arg3 atLine:(int)arg4 withDescription:(id)arg5;
 + (id)failureInRaise:(id)arg1 inFile:(id)arg2 atLine:(int)arg3 withDescription:(id)arg4;
-- (id)filename;
-- (id)ignoredSubdirectories;
-- (id)currentDirectoryPath;
-- (id)pathForFilename:(id)arg1;
-- (id)filePathInProject;
++ (id)failureInRaise:(id)arg1 exception:(id)arg2 inFile:(id)arg3 atLine:(int)arg4 withDescription:(id)arg5;
++ (id)failureInEqualityBetweenValue:(id)arg1 andValue:(id)arg2 withAccuracy:(id)arg3 inFile:(id)arg4 atLine:(int)arg5 withDescription:(id)arg6;
++ (id)failureInEqualityBetweenObject:(id)arg1 andObject:(id)arg2 inFile:(id)arg3 atLine:(int)arg4 withDescription:(id)arg5;
++ (id)failureInCondition:(id)arg1 isTrue:(BOOL)arg2 inFile:(id)arg3 atLine:(int)arg4 withDescription:(id)arg5;
++ (id)failureInFile:(id)arg1 atLine:(int)arg2 withDescription:(id)arg3;
 - (id)lineNumber;
+- (id)filePathInProject;
+- (id)pathForFilename:(id)arg1;
+- (id)currentDirectoryPath;
+- (id)ignoredSubdirectories;
+- (id)filename;
 @end
 

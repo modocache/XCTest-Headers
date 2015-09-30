@@ -11,13 +11,13 @@
     BOOL isInstanciatedInInterface;
 }
 
-- (id)interfaceTestCaseCache;
-- (void)registerInterfaceTestCase;
-- (id)interfaceTestCase;
-- (id)initWithInvocation:(id)arg1;
-- (void)awakeFromNib;
-- (void)performInterfaceTest:(id)arg1;
 - (void)performTest:(id)arg1;
+- (void)performInterfaceTest:(id)arg1;
+- (void)awakeFromNib;
+- (id)initWithInvocation:(id)arg1;
+- (id)interfaceTestCase;
+- (void)registerInterfaceTestCase;
+- (id)interfaceTestCaseCache;
 
 @end
 
