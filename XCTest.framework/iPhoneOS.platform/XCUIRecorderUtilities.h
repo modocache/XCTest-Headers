@@ -24,7 +24,7 @@
 @property unsigned long long _compareSnapshotsLikePlatform; // @synthesize _compareSnapshotsLikePlatform;
 @property unsigned long long language; // @synthesize language=_language;
 - (id)performWithKeyModifiersAndBlockNodeForModifierFlags:(unsigned long long)arg1;
-- (id)gestureNodesForKeyDownEventWithCharacters:(id)arg1 charactersIgnoringModifiers:(id)arg2 modifierFlags:(unsigned long long)arg3 focusedAccessibilityElement:(id)arg4 didAppendToPreviousString:(char *)arg5;
+- (id)gestureNodesForKeyDownEventWithCharacters:(id)arg1 charactersIgnoringModifiers:(id)arg2 modifierFlags:(unsigned long long)arg3 focusedAccessibilityElement:(id)arg4 didAppendToPreviousString:(_Bool *)arg5;
 - (id)_stringConstantForString:(id)arg1;
 - (void)clearPreviousTyping;
 - (id)nodeToFindElementForSnapshots:(id)arg1;

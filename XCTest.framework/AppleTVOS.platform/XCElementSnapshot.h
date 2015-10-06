@@ -60,6 +60,8 @@
 @property(copy) id value; // @synthesize value=_value;
 @property struct CGRect frame; // @synthesize frame=_frame;
 @property(copy) NSString *identifier; // @synthesize identifier=_identifier;
+- (id)_uniquelyIdentifyingObjectiveCCode;
+- (id)_uniquelyIdentifyingSwiftCode;
 - (_Bool)_isAncestorOfElement:(id)arg1;
 - (_Bool)_isDescendantOfElement:(id)arg1;
 @property(readonly) NSArray *suggestedHitpoints;

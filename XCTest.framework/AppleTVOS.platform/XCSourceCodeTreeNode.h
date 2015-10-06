@@ -66,6 +66,7 @@
 - (id)description;
 - (id)descriptionWithDepth:(unsigned long long)arg1;
 - (id)_depthStringWithDepth:(unsigned long long)arg1;
+- (id)sourceCodeForAllDescendants;
 - (id)selectedDescendantsSourceCodeWithError:(id *)arg1;
 @property(retain) XCSourceCodeTreeNode *selectedChildNode;
 - (id)selectedChildNodesIndexesWithError:(id *)arg1;

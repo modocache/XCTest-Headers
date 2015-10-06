@@ -6,14 +6,24 @@
 
 #import <XCTest/XCUIRecorder_iOS.h>
 
+@class XCElementSnapshot;
+
 @interface XCUIRecorder_tvOS : XCUIRecorder_iOS
 {
+    BOOL _sawButtonRecently;
+    XCElementSnapshot *_previousFocusElementSnapshot;
+    XCElementSnapshot *_previousFocusAppSnapshot;
 }
 
-- (id)_XCT_recordedEventNames:(id)arg1 duration:(id)arg2 startLocation:(id)arg3 startElementSnapshot:(id)arg4 startApplicationSnapshot:(id)arg5 endLocation:(id)arg6 endElementSnapshot:(id)arg7 endApplicationSnapshot:(id)arg8;
-- (id)_remoteButtonSymbolNameForEventTypeSymbolName;
+@property BOOL sawButtonRecently; // @synthesize sawButtonRecently=_sawButtonRecently;
+@property(retain) XCElementSnapshot *previousFocusAppSnapshot; // @synthesize previousFocusAppSnapshot=_previousFocusAppSnapshot;
+@property(retain) XCElementSnapshot *previousFocusElementSnapshot; // @synthesize previousFocusElementSnapshot=_previousFocusElementSnapshot;
+- (id)_XCT_nativeFocusItemDidChangeAtTime:(id)arg1 parameterSnapshot:(id)arg2 applicationSnapshot:(id)arg3;
+- (id)_XCT_recordedEventNames:(id)arg1 timestamp:(id)arg2 duration:(id)arg3 startLocation:(id)arg4 startElementSnapshot:(id)arg5 startApplicationSnapshot:(id)arg6 endLocation:(id)arg7 endElementSnapshot:(id)arg8 endApplicationSnapshot:(id)arg9;
+- (void)_generateCodeForRemoteButton:(id)arg1 applicationSnapshot:(id)arg2;
 - (unsigned long long)platform;
 - (id)defaultAttributes;
+- (void)dealloc;
 
 @end
 

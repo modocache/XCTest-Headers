@@ -6,12 +6,13 @@
 
 #import "NSObject.h"
 
+#import "XCDebugLogDelegate.h"
 #import "XCTestDriverInterface.h"
 #import "XCTestManager_TestsInterface.h"
 
-@class DTXConnection, NSObject<OS_dispatch_queue>, NSString, NSUUID, NSXPCConnection, XCTestConfiguration, XCTestSuite;
+@class DTXConnection, NSMutableArray, NSObject<OS_dispatch_queue>, NSString, NSUUID, NSXPCConnection, XCTestConfiguration, XCTestSuite;
 
-@interface XCTestDriver : NSObject <XCTestManager_TestsInterface, XCTestDriverInterface>
+@interface XCTestDriver : NSObject <XCTestManager_TestsInterface, XCTestDriverInterface, XCDebugLogDelegate>
 {
     XCTestSuite *_currentTestSuite;
     XCTestConfiguration *_currentTestConfiguration;
@@ -29,6 +30,8 @@
     long long _IDEProtocolVersion;
     unsigned long long _daemonProtocolVersion;
     int _daemonAvailabilityToken;
+    NSMutableArray *_debugMessageBuffer;
+    int _debugMessageBufferOverflow;
 }
 
 + (id)sharedTestDriver;
@@ -54,7 +57,15 @@
 - (void)resumeAppSleep:(id)arg1;
 - (id)suspendAppSleep;
 @property(readonly) id <XCTestManager_ManagerInterface> managerProxy;
+- (void)_softlinkDTXConnectionServices;
+- (void)logDebugMessage:(id)arg1;
 - (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 
