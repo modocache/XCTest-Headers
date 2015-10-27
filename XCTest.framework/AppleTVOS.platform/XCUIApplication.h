@@ -37,6 +37,7 @@
 @property(copy, nonatomic) NSArray *launchArguments; // @synthesize launchArguments=_launchArguments;
 - (void)dismissKeyboard;
 @property(readonly) XCUIElement *keyboard; // @synthesize keyboard=_keyboard;
+- (long long)interfaceOrientation;
 - (void)_waitForViewControllerViewDidDisappearWithTimeout:(double)arg1;
 - (void)_waitForQuiescence;
 - (void)terminate;
