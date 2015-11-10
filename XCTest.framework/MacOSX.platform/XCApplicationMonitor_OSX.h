@@ -10,15 +10,14 @@
 
 @interface XCApplicationMonitor_OSX : XCApplicationMonitor
 {
-    NSHashTable *_monitoredApplications;
-    NSHashTable *_observedApplications;
+    NSHashTable *_observedNSRunningApplications;
 }
 
-- (id)allMonitoredApplications;
+- (void)terminateApplicationProcess:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void *)arg4;
 - (void)handleWorkspaceNotification:(id)arg1;
 - (id)monitoredApplicationWithProcessIdentifier:(int)arg1;
-- (void)beginMonitoringApplication:(id)arg1;
+- (void)_beginMonitoringApplication:(id)arg1;
 - (id)_runningApplicationMatchingXCApplication:(id)arg1;
 - (void)_updateXCApplication:(id)arg1 fromNSRunningApplication:(id)arg2;
 - (id)init;

@@ -6,33 +6,25 @@
 
 #import "NSObject.h"
 
-#import "XCTestObservation.h"
+@class NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>;
 
-@class NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
-
-@interface XCApplicationMonitor : NSObject <XCTestObservation>
+@interface XCApplicationMonitor : NSObject
 {
-    NSMutableDictionary *_launchSessionTokens;
+    NSMutableDictionary *_applicationImplementations;
+    NSMutableDictionary *_applicationProcessesForPID;
     NSObject<OS_dispatch_queue> *_queue;
 }
 
 + (id)sharedMonitor;
 @property NSObject<OS_dispatch_queue> *queue; // @synthesize queue=_queue;
-@property(readonly, copy) NSArray *allMonitoredApplications;
-- (void)testCaseWillStart:(id)arg1;
+- (void)terminateApplicationProcess:(id)arg1;
 - (id)monitoredApplicationWithProcessIdentifier:(int)arg1;
-- (id)launchSessionTokenForApplication:(id)arg1;
-- (void)setLaunchSessionToken:(id)arg1 forApplication:(id)arg2;
-- (void)applicationWithBundleID:(id)arg1 didUpdatePID:(int)arg2 andState:(unsigned long long)arg3;
-- (void)setAccessibilityActive:(BOOL)arg1 forApplicationWithPID:(int)arg2;
-- (void)beginMonitoringApplication:(id)arg1;
+- (void)_beginMonitoringApplication:(id)arg1;
+@property(readonly, copy) NSArray *monitoredApplications;
+- (void)setApplicationProcess:(id)arg1 forPID:(int)arg2;
+- (id)applicationProcessWithPID:(int)arg1;
+- (id)applicationImplementationForApplicationAtPath:(id)arg1 bundleID:(id)arg2;
 - (id)init;
-
-// Remaining properties
-@property(readonly, copy) NSString *debugDescription;
-@property(readonly, copy) NSString *description;
-@property(readonly) unsigned long long hash;
-@property(readonly) Class superclass;
 
 @end
 

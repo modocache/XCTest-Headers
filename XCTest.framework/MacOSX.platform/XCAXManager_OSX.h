@@ -6,14 +6,13 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSHashTable, NSMapTable, NSMutableArray, NSMutableDictionary;
+@class NSArray, NSMapTable, NSMutableArray, NSMutableDictionary;
 
 @interface XCAXManager_OSX : NSObject
 {
     struct __AXUIElement *_systemWideElement;
     NSMutableDictionary *_observersByPID;
     NSMutableArray *_activeMenus;
-    NSHashTable *_applications;
     NSMapTable *_snapshotDictionariesByRootElement;
     NSMutableDictionary *_notificationHandlers;
 }
@@ -24,7 +23,7 @@
 - (void)requestMainThreadIdleNotificationForApplicationWithPID:(int)arg1;
 - (void)removeObserver:(id)arg1 forAXNotification:(id)arg2;
 - (id)addObserverForAXNotification:(id)arg1 handler:(CDUnknownBlockType)arg2;
-- (void)registerForAXNotificationsForApplication:(id)arg1;
+- (void)registerForAXNotificationsForApplicationWithPID:(int)arg1;
 - (id)screenshotData;
 - (id)attributesForElementSnapshot:(id)arg1 attributeList:(id)arg2 error:(id *)arg3;
 - (const struct __AXUIElement *)copyElementRefForElementAtPoint:(struct CGPoint)arg1 error:(id *)arg2;
