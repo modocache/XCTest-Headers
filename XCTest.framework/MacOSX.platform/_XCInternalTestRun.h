@@ -18,10 +18,17 @@
     unsigned long long _unexpectedExceptionCount;
     BOOL _hasStarted;
     BOOL _hasStopped;
+    unsigned long long _executionCountBeforeCrash;
+    unsigned long long _failureCountBeforeCrash;
+    unsigned long long _unexpectedExceptionCountBeforeCrash;
 }
 
+@property unsigned long long unexpectedExceptionCountBeforeCrash; // @synthesize unexpectedExceptionCountBeforeCrash=_unexpectedExceptionCountBeforeCrash;
+@property unsigned long long failureCountBeforeCrash; // @synthesize failureCountBeforeCrash=_failureCountBeforeCrash;
+@property unsigned long long executionCountBeforeCrash; // @synthesize executionCountBeforeCrash=_executionCountBeforeCrash;
 @property(readonly) BOOL hasStopped; // @synthesize hasStopped=_hasStopped;
 @property(readonly) XCTest *test; // @synthesize test=_test;
+- (void).cxx_destruct;
 - (void)recordFailureWithDescription:(id)arg1 inFile:(id)arg2 atLine:(unsigned long long)arg3 expected:(BOOL)arg4;
 @property(readonly) unsigned long long testCaseCount;
 @property(readonly) unsigned long long unexpectedExceptionCount;
@@ -34,7 +41,6 @@
 @property(readonly) double testDuration;
 @property(readonly) double totalDuration;
 - (id)initWithTest:(id)arg1;
-- (void)dealloc;
 
 @end
 

@@ -4,31 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#import "NSObject.h"
+#import <XCTest/XCUIEventGenerator.h>
 
-@class NSObject<OS_dispatch_queue>;
-
-@interface XCEventGenerator : NSObject
+@interface XCEventGenerator : XCUIEventGenerator
 {
-    NSObject<OS_dispatch_queue> *_eventQueue;
-    struct __CFRunLoopObserver *_generationObserver;
-    unsigned long long _generation;
 }
-
-+ (id)sharedGenerator;
-@property unsigned long long generation; // @synthesize generation=_generation;
-@property(readonly) NSObject<OS_dispatch_queue> *eventQueue; // @synthesize eventQueue=_eventQueue;
-- (double)rotateInRect:(struct CGRect)arg1 withRotation:(double)arg2 velocity:(double)arg3 orientation:(long long)arg4 handler:(CDUnknownBlockType)arg5;
-- (double)pinchInRect:(struct CGRect)arg1 withScale:(double)arg2 velocity:(double)arg3 orientation:(long long)arg4 handler:(CDUnknownBlockType)arg5;
-- (double)pressAtPoint:(struct CGPoint)arg1 forDuration:(double)arg2 liftAtPoint:(struct CGPoint)arg3 velocity:(double)arg4 orientation:(long long)arg5 name:(id)arg6 handler:(CDUnknownBlockType)arg7;
-- (double)pressAtPoint:(struct CGPoint)arg1 forDuration:(double)arg2 orientation:(long long)arg3 handler:(CDUnknownBlockType)arg4;
-- (double)tapWithNumberOfTaps:(unsigned long long)arg1 numberOfTouches:(unsigned long long)arg2 inRect:(struct CGRect)arg3 orientation:(long long)arg4 handler:(CDUnknownBlockType)arg5;
-- (double)twoFingerTapInRect:(struct CGRect)arg1 orientation:(long long)arg2 handler:(CDUnknownBlockType)arg3;
-- (double)doubleTapAtPoint:(struct CGPoint)arg1 orientation:(long long)arg2 handler:(CDUnknownBlockType)arg3;
-- (double)tapAtPoint:(struct CGPoint)arg1 orientation:(long long)arg2 handler:(CDUnknownBlockType)arg3;
-- (void)_startEventSequenceWithSteppingCallback:(CDUnknownBlockType)arg1;
-- (void)_scheduleCallback:(CDUnknownBlockType)arg1 afterInterval:(double)arg2;
-- (id)init;
 
 @end
 

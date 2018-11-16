@@ -4,9 +4,11 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-@class XCUIElementQuery;
+@class XCUIElement, XCUIElementQuery;
 
 @protocol XCUIElementTypeQueryProvider
+@property(readonly) XCUIElement *firstMatch;
+@property(readonly, copy) XCUIElementQuery *statusItems;
 @property(readonly, copy) XCUIElementQuery *otherElements;
 @property(readonly, copy) XCUIElementQuery *handles;
 @property(readonly, copy) XCUIElementQuery *layoutItems;
@@ -86,5 +88,6 @@
 @property(readonly, copy) XCUIElementQuery *sheets;
 @property(readonly, copy) XCUIElementQuery *windows;
 @property(readonly, copy) XCUIElementQuery *groups;
+@property(readonly, copy) XCUIElementQuery *touchBars;
 @end
 

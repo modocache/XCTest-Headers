@@ -13,6 +13,7 @@
     NSMutableArray *_remainingNodes;
 }
 
+- (void).cxx_destruct;
 - (id)nextObject;
 - (id)initWithNode:(id)arg1;
 

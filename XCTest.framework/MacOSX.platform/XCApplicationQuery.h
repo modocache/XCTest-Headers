@@ -15,7 +15,7 @@
 }
 
 @property(retain) XCElementSnapshot *lastSnapshot; // @synthesize lastSnapshot=_lastSnapshot;
-- (id)matchingSnapshotsWithError:(id *)arg1;
+- (void).cxx_destruct;
 - (id)application;
 - (id)initWithApplication:(id)arg1;
 - (void)dealloc;

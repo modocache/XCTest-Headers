@@ -28,6 +28,7 @@
 @property(readonly, copy) NSSet *inputs; // @synthesize inputs=_inputs;
 @property(readonly, copy) XCKeyMappingPath *next; // @synthesize next=_next;
 @property(readonly) unsigned long long keyState; // @synthesize keyState=_keyState;
+- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
@@ -35,7 +36,6 @@
 - (id)inputWithRequiredFlags:(unsigned long long)arg1 excludedFlags:(unsigned long long)arg2;
 @property(readonly, getter=isEmpty) BOOL empty;
 @property(readonly, getter=isComplete) BOOL complete;
-- (void)dealloc;
 - (id)initWithKeyState:(unsigned long long)arg1 next:(id)arg2 inputs:(id)arg3 output:(id)arg4;
 - (id)init;
 

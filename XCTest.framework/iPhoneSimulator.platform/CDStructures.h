@@ -31,13 +31,13 @@ struct CGVector {
 };
 
 struct _CSTypeRef {
-    unsigned long long _opaque_1;
-    unsigned long long _opaque_2;
+    unsigned long long _field1;
+    unsigned long long _field2;
 };
 
 struct _NSRange {
-    unsigned long long location;
-    unsigned long long length;
+    unsigned long long _field1;
+    unsigned long long _field2;
 };
 
 struct __va_list_tag {
@@ -55,18 +55,8 @@ struct time_value {
 #pragma mark Typedef'd Structures
 
 typedef struct {
-    unsigned int _field1;
-    unsigned int _field2;
-    unsigned int _field3;
-    unsigned int _field4;
-    unsigned int _field5;
-    unsigned int _field6;
-    unsigned int _field7;
-} CDStruct_a561fd19;
-
-typedef struct {
-    unsigned short _field1;
-    unsigned short _field2;
-    unsigned short _field3[1];
-} CDStruct_27a325c0;
+    long long _field1;
+    long long _field2;
+    long long _field3;
+} CDStruct_2ec95fd7;
 

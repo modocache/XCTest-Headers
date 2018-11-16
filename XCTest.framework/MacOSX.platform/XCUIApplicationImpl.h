@@ -10,25 +10,67 @@
 
 @interface XCUIApplicationImpl : NSObject
 {
+    BOOL _suspended;
+    BOOL _codeCoverageEnabled;
+    BOOL _hasValidAlertCount;
+    id <XCUIApplicationMonitor> _applicationMonitor;
+    id <XCUIAccessibilityInterface> _axInterface;
     NSString *_path;
     NSString *_bundleID;
     XCUIApplicationProcess *_currentProcess;
+    id <XCUIXcodeApplicationManaging> _xcodeApplicationManager;
+    id <XCUIApplicationManaging> _platformApplicationManager;
 }
 
++ (BOOL)shouldWaitForAutomationSessionWhenUsingPlatformLauncher:(BOOL)arg1;
++ (id)keyPathsForValuesAffectingActivated;
++ (id)keyPathsForValuesAffectingForeground;
++ (id)keyPathsForValuesAffectingBackground;
++ (id)keyPathsForValuesAffectingRunning;
++ (id)keyPathsForValuesAffectingState;
++ (id)keyPathsForValuesAffectingHasCurrentProcess;
+@property BOOL hasValidAlertCount; // @synthesize hasValidAlertCount=_hasValidAlertCount;
+@property BOOL codeCoverageEnabled; // @synthesize codeCoverageEnabled=_codeCoverageEnabled;
+@property(readonly) id <XCUIApplicationManaging> platformApplicationManager; // @synthesize platformApplicationManager=_platformApplicationManager;
+@property(readonly) id <XCUIXcodeApplicationManaging> xcodeApplicationManager; // @synthesize xcodeApplicationManager=_xcodeApplicationManager;
 @property(retain, nonatomic) XCUIApplicationProcess *currentProcess; // @synthesize currentProcess=_currentProcess;
+@property(readonly) BOOL suspended; // @synthesize suspended=_suspended;
 @property(readonly, copy) NSString *bundleID; // @synthesize bundleID=_bundleID;
 @property(readonly, copy) NSString *path; // @synthesize path=_path;
+@property(readonly) id <XCUIAccessibilityInterface> axInterface; // @synthesize axInterface=_axInterface;
+@property(readonly) id <XCUIApplicationMonitor> applicationMonitor; // @synthesize applicationMonitor=_applicationMonitor;
+- (void).cxx_destruct;
 @property(nonatomic) long long activationPolicy;
-- (void)waitForQuiescence;
+- (void)handleCrashUnderSymbol:(id)arg1;
 - (void)terminate;
-- (void)launchWithArguments:(id)arg1 environment:(id)arg2 usingXcode:(BOOL)arg3;
-- (void)_waitForLaunchProgressViaProxy:(id)arg1;
-- (void)_waitForLaunchTokenFromReceipt:(id)arg1;
+- (void)_waitOnActivationExpectation:(id)arg1;
+- (id)_activationExpectation;
+- (void)waitForAccessibilityActive;
+- (void)_waitForValidPID;
+- (void)_launchUsingPlatformWithArguments:(id)arg1 environment:(id)arg2;
+- (void)_launchUsingXcodeWithArguments:(id)arg1 environment:(id)arg2;
+- (void)_waitForLaunchProgressWithToken:(id)arg1;
+- (void)_launchWithRequest:(id)arg1;
+- (void)_activateForPlatform;
+- (void)_activate;
+- (void)serviceOpenRequest:(id)arg1;
+@property(readonly) BOOL activated;
+@property(readonly) BOOL foreground;
+@property(readonly) BOOL background;
+@property(readonly) BOOL running;
+- (void)_awaitValidCurrentProcess;
+- (void)resetAlertCount;
+@property(readonly) unsigned long long alertCount;
+- (BOOL)waitForState:(unsigned long long)arg1 timeout:(double)arg2;
 @property(nonatomic) unsigned long long state;
 @property(nonatomic) int processID;
+@property(readonly) int bridgedProcessID;
+@property(readonly) XCAccessibilityElement *bridgedProcessAccessibilityElement;
 @property(readonly) XCAccessibilityElement *accessibilityElement;
-- (void)dealloc;
+- (BOOL)hasCurrentProcess;
+- (id)description;
 - (id)initWithPath:(id)arg1 bundleID:(id)arg2;
+- (id)initWithPath:(id)arg1 bundleID:(id)arg2 xcodeApplicationManager:(id)arg3 platformApplicationManager:(id)arg4 applicationMonitor:(id)arg5 axInterface:(id)arg6;
 
 @end
 

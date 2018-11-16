@@ -23,6 +23,7 @@
 @property(retain) XCAccessibilityElement *previousFocusedAccessibilityElement; // @synthesize previousFocusedAccessibilityElement=_previousFocusedAccessibilityElement;
 @property unsigned long long _compareSnapshotsLikePlatform; // @synthesize _compareSnapshotsLikePlatform;
 @property unsigned long long language; // @synthesize language=_language;
+- (void).cxx_destruct;
 - (id)performWithKeyModifiersAndBlockNodeForModifierFlags:(unsigned long long)arg1;
 - (id)gestureNodesForKeyDownEventWithCharacters:(id)arg1 charactersIgnoringModifiers:(id)arg2 modifierFlags:(unsigned long long)arg3 focusedAccessibilityElement:(id)arg4 didAppendToPreviousString:(_Bool *)arg5;
 - (id)_stringConstantForString:(id)arg1;
@@ -36,6 +37,7 @@
 - (id)remoteNodeWithButtonSymbolName:(id)arg1;
 - (id)commentNodeWithString:(id)arg1;
 - (id)applicationNode;
+- (id)adjustedSnapshotForApplicationSnapshot:(id)arg1;
 - (id)focusedAccessibilityElementForApplicationSnapshot:(id)arg1;
 - (id)snapshotsForAccessibilityElement:(id)arg1 applicationSnapshot:(id)arg2;
 - (id)snapshotInTreeStartingWithSnapshot:(id)arg1 forElement:(id)arg2;

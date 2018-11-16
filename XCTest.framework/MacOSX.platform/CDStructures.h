@@ -4,7 +4,9 @@
 //     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.
 //
 
-#pragma mark Blocks
+#pragma mark Function Pointers and Blocks
+
+typedef void (*CDUnknownFunctionPointerType)(void); // return type and parameters are unknown
 
 typedef void (^CDUnknownBlockType)(void); // return type and parameters are unknown
 
@@ -81,8 +83,8 @@ struct UCKeyboardTypeHeader {
 };
 
 struct _CSTypeRef {
-    unsigned long long _opaque_1;
-    unsigned long long _opaque_2;
+    unsigned long long _field1;
+    unsigned long long _field2;
 };
 
 struct _NSRange {
@@ -101,4 +103,12 @@ struct time_value {
     int seconds;
     int microseconds;
 };
+
+#pragma mark Typedef'd Structures
+
+typedef struct {
+    long long _field1;
+    long long _field2;
+    long long _field3;
+} CDStruct_2ec95fd7;
 
