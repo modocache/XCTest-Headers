@@ -6,16 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSMutableSet;
+@class NSMutableArray;
 
 @interface _XCTestObservationCenterImplementation : NSObject
 {
-    NSMutableSet *_observers;
+    NSMutableArray *_observers;
     _Bool _suspended;
 }
 
 @property _Bool suspended; // @synthesize suspended=_suspended;
-@property(retain) NSMutableSet *observers; // @synthesize observers=_observers;
+@property(retain) NSMutableArray *observers; // @synthesize observers=_observers;
+- (void).cxx_destruct;
 - (id)init;
 
 @end

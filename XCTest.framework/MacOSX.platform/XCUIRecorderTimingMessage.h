@@ -18,6 +18,7 @@
 + (id)messageWithString:(id)arg1;
 @property(copy) NSString *message; // @synthesize message=_message;
 @property double start; // @synthesize start=_start;
+- (void).cxx_destruct;
 
 @end
 

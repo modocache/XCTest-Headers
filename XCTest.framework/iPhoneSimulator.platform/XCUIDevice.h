@@ -6,11 +6,14 @@
 
 #import "NSObject.h"
 
+@class XCUISiriService;
+
 @interface XCUIDevice : NSObject
 {
 }
 
 + (id)sharedDevice;
+@property(readonly) XCUISiriService *siriService;
 - (void)pressLockButton;
 - (void)holdHomeButtonForDuration:(double)arg1;
 - (void)pressButton:(long long)arg1;

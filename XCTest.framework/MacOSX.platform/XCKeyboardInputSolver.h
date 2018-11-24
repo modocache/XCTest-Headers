@@ -8,11 +8,11 @@
 
 #import "NSCopying.h"
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSString, XCKeyboardKeyMap;
+@class NSArray, NSMutableArray, NSMutableDictionary, NSString, XCUIKeyboardKeyMap;
 
 @interface XCKeyboardInputSolver : NSObject <NSCopying>
 {
-    XCKeyboardKeyMap *_keyMap;
+    XCUIKeyboardKeyMap *_keyMap;
     NSString *_string;
     unsigned long long _requiredFlags;
     unsigned long long _excludedFlags;
@@ -30,7 +30,8 @@
 @property unsigned long long excludedFlags; // @synthesize excludedFlags=_excludedFlags;
 @property unsigned long long requiredFlags; // @synthesize requiredFlags=_requiredFlags;
 @property(readonly, copy) NSString *string; // @synthesize string=_string;
-@property(readonly) XCKeyboardKeyMap *keyMap; // @synthesize keyMap=_keyMap;
+@property(readonly) XCUIKeyboardKeyMap *keyMap; // @synthesize keyMap=_keyMap;
+- (void).cxx_destruct;
 - (id)_solve;
 - (id)solve;
 - (void)solveWithSolutionRange:(struct _NSRange)arg1 results:(id)arg2;
@@ -39,7 +40,6 @@
 - (void)advancePath:(id)arg1 range:(id)arg2;
 @property(readonly, getter=isComplete) BOOL complete;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (void)dealloc;
 - (id)initWithKeyMap:(id)arg1 string:(id)arg2;
 - (id)init;
 

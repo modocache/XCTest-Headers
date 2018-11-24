@@ -6,45 +6,99 @@
 
 #import "NSObject.h"
 
-@class NSObject<OS_dispatch_queue>, XCAXClient_iOS, XCAccessibilityElement, XCApplicationMonitor, XCUIApplicationImpl;
+#import "XCTElementSnapshotAttributeDataSource.h"
 
-@interface XCUIApplicationProcess : NSObject
+@class NSObject<OS_dispatch_queue>, NSString, XCAccessibilityElement, XCElementSnapshot;
+
+@interface XCUIApplicationProcess : NSObject <XCTElementSnapshotAttributeDataSource>
 {
     NSObject<OS_dispatch_queue> *_queue;
     _Bool _accessibilityActive;
     unsigned long long _applicationState;
     int _processID;
     id _token;
+    int _exitCode;
     _Bool _eventLoopHasIdled;
-    _Bool _hasReceivedEventLoopHasIdled;
     _Bool _animationsHaveFinished;
-    _Bool _hasReceivedAnimationsHaveFinished;
-    XCUIApplicationImpl *_applicationImplementation;
-    id <XCTestManager_IDEInterface> _IDEProxy;
-    XCApplicationMonitor *_applicationMonitor;
-    XCAXClient_iOS *_AXClient_iOS;
+    _Bool _hasExitCode;
+    _Bool _hasCrashReport;
+    _Bool _bridged;
+    unsigned long long _alertCount;
+    NSString *_bundleID;
+    id <XCTRunnerAutomationSession> _automationSession;
+    XCElementSnapshot *_lastSnapshot;
+    XCUIApplicationProcess *_bridgedProcess;
+    id <XCUIApplicationMonitor> _applicationMonitor;
+    id <XCUIAccessibilityInterface> _axInterface;
 }
 
-@property XCAXClient_iOS *AXClient_iOS; // @synthesize AXClient_iOS=_AXClient_iOS;
-@property XCApplicationMonitor *applicationMonitor; // @synthesize applicationMonitor=_applicationMonitor;
-@property id <XCTestManager_IDEInterface> IDEProxy; // @synthesize IDEProxy=_IDEProxy;
-@property XCUIApplicationImpl *applicationImplementation; // @synthesize applicationImplementation=_applicationImplementation;
-- (void)terminate;
-- (void)waitForViewControllerViewDidDisappearWithTimeout:(double)arg1;
-- (void)waitForQuiescence;
-@property _Bool hasReceivedAnimationsHaveFinished;
++ (id)keyPathsForValuesAffectingIsQuiescent;
++ (_Bool)automaticallyNotifiesObserversForKey:(id)arg1;
++ (id)keyPathsForValuesAffectingHasBridgedProcess;
++ (id)keyPathsForValuesAffectingIsProcessIDValid;
++ (id)keyPathsForValuesAffectingForeground;
++ (id)keyPathsForValuesAffectingBackground;
++ (id)keyPathsForValuesAffectingSuspended;
++ (id)keyPathsForValuesAffectingRunning;
++ (id)keyPathsForValuesAffectingIsApplicationStateKnown;
+@property(readonly) id <XCUIAccessibilityInterface> axInterface; // @synthesize axInterface=_axInterface;
+@property(readonly) id <XCUIApplicationMonitor> applicationMonitor; // @synthesize applicationMonitor=_applicationMonitor;
+@property(retain, nonatomic) XCUIApplicationProcess *bridgedProcess; // @synthesize bridgedProcess=_bridgedProcess;
+@property(retain) XCElementSnapshot *lastSnapshot; // @synthesize lastSnapshot=_lastSnapshot;
+@property(retain) id <XCTRunnerAutomationSession> automationSession; // @synthesize automationSession=_automationSession;
+@property(getter=isBridged) _Bool bridged; // @synthesize bridged=_bridged;
+@property _Bool hasCrashReport; // @synthesize hasCrashReport=_hasCrashReport;
+@property _Bool hasExitCode; // @synthesize hasExitCode=_hasExitCode;
+@property(readonly, copy, nonatomic) NSString *bundleID; // @synthesize bundleID=_bundleID;
+- (void).cxx_destruct;
+@property(readonly) _Bool usePointTransformationsForFrameConversions;
+@property(readonly) _Bool supportsHostedViewCoordinateTransformations;
+- (id)parameterizedAttribute:(id)arg1 forElement:(id)arg2 parameter:(id)arg3 error:(id *)arg4;
+- (id)attributesForElement:(id)arg1 attributes:(id)arg2 error:(id *)arg3;
+@property(readonly) _Bool allowsRemoteAccess;
+- (id)_underlyingDataSourceForElement:(id)arg1;
+- (_Bool)terminate:(id *)arg1;
+- (_Bool)waitForViewControllerViewDidDisappearWithTimeout:(double)arg1 error:(id *)arg2;
+- (void)acquireBackgroundAssertion;
+- (void)waitForFutureAutomationSession:(id)arg1;
+- (id)futureAutomationSession;
+- (void)waitForAutomationSession;
+@property(readonly, getter=isQuiescent) _Bool quiescent;
+- (void)_initiateQuiescenceChecksIncludingAnimationsIdle:(_Bool)arg1;
+- (void)waitForQuiescenceIncludingAnimationsIdle:(_Bool)arg1;
+- (id)_makeQuiescenceExpectation;
+- (void)_notifyWhenAnimationsAreIdle:(CDUnknownBlockType)arg1;
+- (_Bool)_supportsAnimationsIdleNotifications;
+- (void)_notifyWhenMainRunLoopIsIdle:(CDUnknownBlockType)arg1;
+- (void)resetAlertCount;
+- (void)incrementAlertCount;
+@property(readonly) unsigned long long alertCount; // @synthesize alertCount=_alertCount;
 @property _Bool animationsHaveFinished;
-@property _Bool hasReceivedEventLoopHasIdled;
 @property _Bool eventLoopHasIdled;
+@property int exitCode;
 @property(retain) id token;
+- (_Bool)hasBridgedProcess;
 @property(nonatomic) int processID;
+@property(readonly, getter=isProcessIDValid) _Bool processIDValid;
+@property(readonly) _Bool foreground;
+@property(readonly) _Bool background;
+@property(readonly) _Bool suspended;
+@property(readonly) _Bool running;
+- (_Bool)isApplicationStateKnown;
+- (void)_awaitKnownApplicationState;
 @property(nonatomic) unsigned long long applicationState;
 @property(nonatomic) _Bool accessibilityActive;
 @property(readonly, copy) XCAccessibilityElement *accessibilityElement;
-- (id)description;
-- (id)init;
-- (id)initWithApplicationMonitor:(id)arg1 AXInterface:(id)arg2 IDEProxy:(id)arg3;
-- (void)dealloc;
+@property(readonly, copy) NSString *shortDescription;
+- (id)_queue_description;
+@property(readonly, copy) NSString *description;
+- (id)initWithBundleID:(id)arg1;
+- (id)initWithBundleID:(id)arg1 applicationMonitor:(id)arg2 axInterface:(id)arg3;
+
+// Remaining properties
+@property(readonly, copy) NSString *debugDescription;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

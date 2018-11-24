@@ -43,6 +43,7 @@
 @property(retain) XCUIRecorderNodeFinderMatch *ancestorNodeFinderMatch; // @synthesize ancestorNodeFinderMatch=_ancestorNodeFinderMatch;
 @property(retain) NSMutableArray *unprocessedContainsMatches; // @synthesize unprocessedContainsMatches=_unprocessedContainsMatches;
 @property(retain) NSMutableArray *mutableFoundNodeMatches; // @synthesize mutableFoundNodeMatches=_mutableFoundNodeMatches;
+- (void).cxx_destruct;
 - (id)descendantsQueryNodeWithTargetElementTypeContainingElementsOfType:(unsigned long long)arg1 identifierValue:(id)arg2;
 - (id)childrenQueryNodeWithTargetElementTypeAndIdentifierValue:(id)arg1;
 - (id)descendantsQueryNodeWithElementType:(unsigned long long)arg1;

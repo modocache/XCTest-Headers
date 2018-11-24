@@ -6,30 +6,39 @@
 
 #import "NSObject.h"
 
+#import "XCTElementSnapshotProvider.h"
 #import "XCUIElementTypeQueryProvider.h"
 
-@class NSArray, NSOrderedSet, NSString, XCUIApplication, XCUIElement;
+@class NSArray, NSOrderedSet, NSString, XCElementSnapshot, XCTElementQuery, XCUIApplication, XCUIElement;
 
-@interface XCUIElementQuery : NSObject <XCUIElementTypeQueryProvider>
+@interface XCUIElementQuery : NSObject <XCTElementSnapshotProvider, XCUIElementTypeQueryProvider>
 {
     BOOL _changesScope;
-    NSString *_queryDescription;
+    BOOL _stopsOnFirstMatch;
+    BOOL _useRootElementSnapshot;
     XCUIElementQuery *_inputQuery;
-    CDUnknownBlockType _filter;
     unsigned long long _expressedType;
     NSArray *_expressedIdentifiers;
     NSOrderedSet *_lastInput;
     NSOrderedSet *_lastOutput;
+    XCElementSnapshot *_rootElementSnapshot;
+    NSString *_queryDescription;
+    id <XCTElementSetTransformer> _transformer;
 }
 
+@property(retain) id <XCTElementSetTransformer> transformer; // @synthesize transformer=_transformer;
+@property(readonly, copy) NSString *queryDescription; // @synthesize queryDescription=_queryDescription;
+@property BOOL useRootElementSnapshot; // @synthesize useRootElementSnapshot=_useRootElementSnapshot;
+@property(retain) XCElementSnapshot *rootElementSnapshot; // @synthesize rootElementSnapshot=_rootElementSnapshot;
 @property(copy) NSOrderedSet *lastOutput; // @synthesize lastOutput=_lastOutput;
 @property(copy) NSOrderedSet *lastInput; // @synthesize lastInput=_lastInput;
 @property(copy) NSArray *expressedIdentifiers; // @synthesize expressedIdentifiers=_expressedIdentifiers;
 @property unsigned long long expressedType; // @synthesize expressedType=_expressedType;
+@property BOOL stopsOnFirstMatch; // @synthesize stopsOnFirstMatch=_stopsOnFirstMatch;
 @property BOOL changesScope; // @synthesize changesScope=_changesScope;
-@property(readonly, copy) CDUnknownBlockType filter; // @synthesize filter=_filter;
 @property(readonly) XCUIElementQuery *inputQuery; // @synthesize inputQuery=_inputQuery;
-@property(readonly, copy) NSString *queryDescription; // @synthesize queryDescription=_queryDescription;
+- (void).cxx_destruct;
+@property(readonly, copy) XCUIElementQuery *statusItems;
 @property(readonly, copy) XCUIElementQuery *otherElements;
 @property(readonly, copy) XCUIElementQuery *handles;
 @property(readonly, copy) XCUIElementQuery *layoutItems;
@@ -109,13 +118,28 @@
 @property(readonly, copy) XCUIElementQuery *sheets;
 @property(readonly, copy) XCUIElementQuery *windows;
 @property(readonly, copy) XCUIElementQuery *groups;
+@property(readonly, copy) XCUIElementQuery *touchBars;
+- (id)snapshotForElement:(id)arg1 attributes:(id)arg2 parameters:(id)arg3 error:(id *)arg4;
+- (BOOL)_resolveRemoteElements:(id)arg1 inSnapshot:(id)arg2 containsBridgedElements:(char *)arg3 error:(id *)arg4;
+@property(readonly, copy) XCElementSnapshot *elementSnapshotForDebugDescription;
+- (id)matchingSnapshotsForLocallyEvaluatedQuery:(id)arg1 error:(id *)arg2;
 - (id)matchingSnapshotsWithError:(id *)arg1;
+@property(readonly) id <XCTElementSnapshotAttributeDataSource> elementSnapshotAttributeDataSource;
+@property(readonly, copy) XCTElementQuery *backingQuery;
+- (id)backingQueryWithRootElement:(id)arg1;
 - (id)matchingSnapshotsHandleUIInterruption:(BOOL)arg1 withError:(id *)arg2;
 @property(readonly, copy) NSArray *allElementsBoundByIndex;
 @property(readonly, copy) NSArray *allElementsBoundByAccessibilityElement;
 - (id)_elementMatchingAccessibilityElementOfSnapshot:(id)arg1;
+- (id)_descendantMatchingAccessibilityElement:(id)arg1;
 - (id)objectForKeyedSubscript:(id)arg1;
 - (id)elementMatchingType:(unsigned long long)arg1 identifier:(id)arg2;
+@property(readonly) XCUIElement *firstMatch;
+- (id)elementWithPlaceholderValue:(id)arg1;
+- (id)elementWithValue:(id)arg1;
+- (id)elementWithIdentifier:(id)arg1;
+- (id)elementWithLabel:(id)arg1;
+- (id)elementWithTitle:(id)arg1;
 - (id)elementMatchingPredicate:(id)arg1;
 - (id)elementBoundByIndex:(unsigned long long)arg1;
 - (id)elementAtIndex:(unsigned long long)arg1;
@@ -128,21 +152,28 @@
 - (id)matchingPredicate:(id)arg1;
 - (id)_predicateWithType:(unsigned long long)arg1 identifier:(id)arg2;
 - (id)_queryWithPredicate:(id)arg1;
+- (id)_queryWithPredicate:(id)arg1 description:(id)arg2;
 - (id)sorted:(CDUnknownBlockType)arg1;
 - (id)descending:(unsigned long long)arg1;
 - (id)ascending:(unsigned long long)arg1;
 - (id)filter:(CDUnknownBlockType)arg1;
 - (id)childrenMatchingType:(unsigned long long)arg1;
 - (id)descendantsMatchingType:(unsigned long long)arg1;
+- (id)debugDescriptionWithSnapshot:(id)arg1;
 @property(readonly, copy) NSString *debugDescription;
-- (id)_debugInfoWithIndent:(id *)arg1;
+- (id)_debugDescriptionWithIndent:(id *)arg1 rootElementSnapshot:(id)arg2;
 @property(readonly, copy) NSString *elementDescription;
 - (id)_derivedExpressedIdentifiers;
 - (unsigned long long)_derivedExpressedType;
 @property(readonly) XCUIApplication *application;
 @property(readonly) unsigned long long count;
-- (id)initWithInputQuery:(id)arg1 queryDescription:(id)arg2 filter:(CDUnknownBlockType)arg3;
-- (void)dealloc;
+- (id)initWithInputQuery:(id)arg1 queryDescription:(id)arg2 transformer:(id)arg3;
+- (id)init;
+
+// Remaining properties
+@property(readonly, copy) NSString *description;
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

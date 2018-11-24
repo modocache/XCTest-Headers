@@ -6,14 +6,16 @@
 
 #import "NSObject.h"
 
-@class NSMutableSet;
+@class NSMutableArray;
 
 @interface XCTestObservationCenter : NSObject
 {
     id _internalImplementation;
 }
 
++ (void)setSharedTestObservationCenter:(id)arg1;
 + (id)sharedTestObservationCenter;
+- (void).cxx_destruct;
 - (void)_testCase:(id)arg1 didFinishActivity:(id)arg2;
 - (void)_testCase:(id)arg1 willStartActivity:(id)arg2;
 - (void)_testCaseDidFail:(id)arg1 withDescription:(id)arg2 inFile:(id)arg3 atLine:(unsigned long long)arg4;
@@ -27,14 +29,13 @@
 - (void)_suspendObservation;
 - (void)_resumeObservation;
 - (void)_observeTestExecutionForBlock:(CDUnknownBlockType)arg1;
-- (void)_instantiateObserversFromObserverClassNames:(id)arg1;
 - (void)removeTestObserver:(id)arg1;
 - (void)addTestObserver:(id)arg1;
-- (void)_addLegacyTestObserver:(id)arg1;
 @property _Bool suspended;
-@property(readonly) NSMutableSet *observers;
+@property(readonly) NSMutableArray *observers;
 - (id)description;
 - (id)init;
+- (id)initBasicCenter;
 
 @end
 

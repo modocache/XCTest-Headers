@@ -6,20 +6,41 @@
 
 #import "NSObject.h"
 
-@class _XCTestExpectationImplementation;
+@class NSArray, NSString, _XCTestExpectationImplementation;
 
 @interface XCTestExpectation : NSObject
 {
     id _internalImplementation;
 }
 
-+ (id)expectationForTestCase:(id)arg1 withDescription:(id)arg2;
++ (id)expectationWithDescription:(id)arg1;
++ (id)compoundOrExpectationWithSubexpectations:(id)arg1;
++ (id)compoundAndExpectationWithSubexpectations:(id)arg1;
 @property(readonly) _XCTestExpectationImplementation *internalImplementation; // @synthesize internalImplementation=_internalImplementation;
+- (void).cxx_destruct;
 - (void)cleanup;
+@property _Bool hasBeenWaitedOn;
+- (void)on_queue_setHasBeenWaitedOn:(_Bool)arg1;
+@property id <XCTestExpectationDelegate> delegate;
+@property(readonly, copy) NSArray *fulfillCallStackReturnAddresses;
+@property(readonly, copy) NSArray *creationCallStackReturnAddresses;
+@property(readonly) _Bool on_queue_fulfilled;
+@property(readonly) _Bool fulfilled;
+@property _Bool hasInverseBehavior;
+@property(getter=isInverted) _Bool inverted;
+@property(readonly) _Bool on_queue_isInverted;
+@property(nonatomic) _Bool assertForOverFulfill;
+@property(nonatomic) unsigned long long expectedFulfillmentCount;
+@property(nonatomic) unsigned long long fulfillmentCount;
+@property(readonly) unsigned long long on_queue_fulfillmentToken;
+@property(readonly) unsigned long long fulfillmentToken;
+@property(readonly) unsigned long long creationToken;
+- (_Bool)_queue_fulfillWithCallStackReturnAddresses:(id)arg1;
 - (void)fulfill;
+@property(copy) NSString *expectationDescription;
 - (id)description;
-- (id)_initForTestCase:(id)arg1 withDescription:(id)arg2;
-- (void)dealloc;
+- (id)initWithDescription:(id)arg1;
+- (id)init;
 
 @end
 

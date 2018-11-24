@@ -8,44 +8,80 @@
 
 #import "NSSecureCoding.h"
 
-@class NSSet, NSString, NSURL, NSUUID;
+@class NSArray, NSDictionary, NSNumber, NSSet, NSString, NSURL, NSUUID, XCTAggregateSuiteRunStatistics;
 
 @interface XCTestConfiguration : NSObject <NSSecureCoding>
 {
-    NSURL *_testBundleURL;
-    NSSet *_testsToSkip;
-    NSSet *_testsToRun;
     BOOL _reportResultsToIDE;
-    NSUUID *_sessionIdentifier;
-    NSString *_pathToXcodeReportingSocket;
+    BOOL _testsDrivenByIDE;
     BOOL _disablePerformanceMetrics;
     BOOL _treatMissingBaselinesAsFailures;
-    NSURL *_baselineFileURL;
-    NSString *_targetApplicationPath;
-    NSString *_targetApplicationBundleID;
-    NSString *_productModuleName;
     BOOL _reportActivities;
     BOOL _testsMustRunOnMainThread;
+    BOOL _initializeForUITesting;
+    BOOL _gatherLocalizableStringsData;
+    BOOL _emitOSLogs;
+    NSString *_absolutePath;
+    NSString *_testBundleRelativePath;
+    NSURL *_testBundleURL;
+    NSSet *_testsToRun;
+    NSSet *_testsToSkip;
+    NSUUID *_sessionIdentifier;
+    NSURL *_baselineFileURL;
+    NSString *_baselineFileRelativePath;
+    NSString *_targetApplicationPath;
+    NSString *_targetApplicationBundleID;
+    NSDictionary *_testApplicationDependencies;
+    NSDictionary *_testApplicationUserOverrides;
+    NSString *_productModuleName;
+    NSDictionary *_targetApplicationEnvironment;
+    NSArray *_targetApplicationArguments;
+    XCTAggregateSuiteRunStatistics *_aggregateStatisticsBeforeCrash;
+    NSString *_automationFrameworkPath;
+    NSString *_bridgedProcessAutomationFrameworkPath;
+    long long _systemAttachmentLifetime;
+    long long _userAttachmentLifetime;
+    long long _testExecutionOrdering;
+    NSNumber *_randomExecutionOrderingSeed;
 }
 
 + (id)configurationWithContentsOfFile:(id)arg1;
 + (id)activeTestConfiguration;
 + (void)setActiveTestConfiguration:(id)arg1;
 + (BOOL)supportsSecureCoding;
+@property(retain) NSNumber *randomExecutionOrderingSeed; // @synthesize randomExecutionOrderingSeed=_randomExecutionOrderingSeed;
+@property long long testExecutionOrdering; // @synthesize testExecutionOrdering=_testExecutionOrdering;
+@property long long userAttachmentLifetime; // @synthesize userAttachmentLifetime=_userAttachmentLifetime;
+@property long long systemAttachmentLifetime; // @synthesize systemAttachmentLifetime=_systemAttachmentLifetime;
+@property BOOL emitOSLogs; // @synthesize emitOSLogs=_emitOSLogs;
+@property(copy) NSString *automationFrameworkPath; // @synthesize automationFrameworkPath=_automationFrameworkPath;
+@property(copy) XCTAggregateSuiteRunStatistics *aggregateStatisticsBeforeCrash; // @synthesize aggregateStatisticsBeforeCrash=_aggregateStatisticsBeforeCrash;
+@property(copy) NSArray *targetApplicationArguments; // @synthesize targetApplicationArguments=_targetApplicationArguments;
+@property(copy) NSDictionary *targetApplicationEnvironment; // @synthesize targetApplicationEnvironment=_targetApplicationEnvironment;
+@property BOOL gatherLocalizableStringsData; // @synthesize gatherLocalizableStringsData=_gatherLocalizableStringsData;
+@property BOOL initializeForUITesting; // @synthesize initializeForUITesting=_initializeForUITesting;
 @property BOOL testsMustRunOnMainThread; // @synthesize testsMustRunOnMainThread=_testsMustRunOnMainThread;
 @property BOOL reportActivities; // @synthesize reportActivities=_reportActivities;
 @property(copy) NSString *productModuleName; // @synthesize productModuleName=_productModuleName;
+@property(copy) NSDictionary *testApplicationUserOverrides; // @synthesize testApplicationUserOverrides=_testApplicationUserOverrides;
+@property(copy) NSDictionary *testApplicationDependencies; // @synthesize testApplicationDependencies=_testApplicationDependencies;
 @property(copy) NSString *targetApplicationBundleID; // @synthesize targetApplicationBundleID=_targetApplicationBundleID;
 @property(copy) NSString *targetApplicationPath; // @synthesize targetApplicationPath=_targetApplicationPath;
 @property BOOL treatMissingBaselinesAsFailures; // @synthesize treatMissingBaselinesAsFailures=_treatMissingBaselinesAsFailures;
 @property BOOL disablePerformanceMetrics; // @synthesize disablePerformanceMetrics=_disablePerformanceMetrics;
+@property BOOL testsDrivenByIDE; // @synthesize testsDrivenByIDE=_testsDrivenByIDE;
 @property BOOL reportResultsToIDE; // @synthesize reportResultsToIDE=_reportResultsToIDE;
-@property(copy) NSURL *baselineFileURL; // @synthesize baselineFileURL=_baselineFileURL;
-@property(copy) NSString *pathToXcodeReportingSocket; // @synthesize pathToXcodeReportingSocket=_pathToXcodeReportingSocket;
+@property(copy) NSString *baselineFileRelativePath; // @synthesize baselineFileRelativePath=_baselineFileRelativePath;
+@property(copy, nonatomic) NSURL *baselineFileURL; // @synthesize baselineFileURL=_baselineFileURL;
 @property(copy) NSUUID *sessionIdentifier; // @synthesize sessionIdentifier=_sessionIdentifier;
 @property(copy) NSSet *testsToSkip; // @synthesize testsToSkip=_testsToSkip;
 @property(copy) NSSet *testsToRun; // @synthesize testsToRun=_testsToRun;
-@property(copy) NSURL *testBundleURL; // @synthesize testBundleURL=_testBundleURL;
+@property(copy, nonatomic) NSURL *testBundleURL; // @synthesize testBundleURL=_testBundleURL;
+@property(copy) NSString *testBundleRelativePath; // @synthesize testBundleRelativePath=_testBundleRelativePath;
+@property(copy) NSString *absolutePath; // @synthesize absolutePath=_absolutePath;
+- (void).cxx_destruct;
+@property(copy) NSString *bridgedProcessAutomationFrameworkPath; // @synthesize bridgedProcessAutomationFrameworkPath=_bridgedProcessAutomationFrameworkPath;
+@property(readonly) long long testMode;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned long long)hash;
 - (id)description;
@@ -53,7 +89,6 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)init;
-- (void)dealloc;
 
 @end
 

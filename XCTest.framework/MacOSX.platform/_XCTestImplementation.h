@@ -14,7 +14,7 @@
 }
 
 @property(retain) XCTestRun *testRun; // @synthesize testRun=_testRun;
-- (void)dealloc;
+- (void).cxx_destruct;
 
 @end
 

@@ -6,21 +6,30 @@
 
 #import "NSObject.h"
 
+#import "XCTNSPredicateExpectationObject.h"
 #import "XCUIElementAttributes.h"
+#import "XCUIElementAttributesPrivate.h"
+#import "XCUIElementSnapshotProviding.h"
 #import "XCUIElementTypeQueryProvider.h"
+#import "XCUIScreenshotProviding.h"
 
-@class NSString, XCElementSnapshot, XCUIApplication, XCUIElementQuery;
+@class NSString, XCElementSnapshot, XCTLocalizableStringInfo, XCUIApplication, XCUICoordinate, XCUIElementQuery;
 
-@interface XCUIElement : NSObject <XCUIElementAttributes, XCUIElementTypeQueryProvider>
+@interface XCUIElement : NSObject <XCUIScreenshotProviding, XCUIElementSnapshotProviding, XCTNSPredicateExpectationObject, XCUIElementAttributesPrivate, XCUIElementAttributes, XCUIElementTypeQueryProvider>
 {
     _Bool _safeQueryResolutionEnabled;
     XCUIElementQuery *_query;
     XCElementSnapshot *_lastSnapshot;
 }
 
++ (id)standardAttributeNames;
++ (_Bool)_dispatchEvent:(CDUnknownBlockType)arg1 inContext:(id)arg2 withSnapshot:(id)arg3 applicationSnapshot:(id)arg4 process:(id)arg5 error:(id *)arg6;
++ (_Bool)_isInvalidEventDuration:(double)arg1;
 @property _Bool safeQueryResolutionEnabled; // @synthesize safeQueryResolutionEnabled=_safeQueryResolutionEnabled;
 @property(retain) XCElementSnapshot *lastSnapshot; // @synthesize lastSnapshot=_lastSnapshot;
 @property(readonly) XCUIElementQuery *query; // @synthesize query=_query;
+- (void).cxx_destruct;
+@property(readonly, copy) XCUIElementQuery *statusItems;
 @property(readonly, copy) XCUIElementQuery *otherElements;
 @property(readonly, copy) XCUIElementQuery *handles;
 @property(readonly, copy) XCUIElementQuery *layoutItems;
@@ -100,12 +109,18 @@
 @property(readonly, copy) XCUIElementQuery *sheets;
 @property(readonly, copy) XCUIElementQuery *windows;
 @property(readonly, copy) XCUIElementQuery *groups;
+@property(readonly, copy) XCUIElementQuery *touchBars;
 - (id)coordinateWithNormalizedOffset:(struct CGVector)arg1;
-- (id)hitPointCoordinate;
+@property(readonly, copy) XCUICoordinate *hitPointCoordinate;
+- (id)valueForAccessibilityAttribute:(id)arg1 error:(id *)arg2;
+- (id)valuesForAccessibilityAttributes:(id)arg1 error:(id *)arg2;
+@property(readonly) _Bool isTopLevelTouchBarElement;
+@property(readonly) _Bool isTouchBarElement;
 @property(readonly, getter=isHittable) _Bool hittable;
 @property(readonly, nonatomic) long long interfaceOrientation;
 @property(readonly) _Bool hasKeyboardFocus;
 - (unsigned long long)traits;
+@property(readonly, copy) XCTLocalizableStringInfo *localizableStringInfo;
 @property(readonly) long long horizontalSizeClass;
 @property(readonly) long long verticalSizeClass;
 @property(readonly) unsigned long long elementType;
@@ -117,34 +132,58 @@
 @property(readonly, copy) NSString *title;
 @property(readonly) struct CGRect frame;
 @property(readonly) id value;
+- (_Bool)resolveHandleUIInterruption:(_Bool)arg1 error:(id *)arg2;
 - (void)resolveHandleUIInterruption:(_Bool)arg1;
+- (_Bool)resolve:(id *)arg1;
 - (void)resolve;
+- (_Bool)waitForNonExistenceWithTimeout:(double)arg1;
+- (id)makeNonExistenceExpectation;
+- (_Bool)waitForExistenceWithTimeout:(double)arg1;
+- (_Bool)_waitForExistenceWithTimeout:(double)arg1;
+- (_Bool)evaluatePredicateForExpectation:(id)arg1 debugMessage:(id *)arg2;
+- (id)_debugDescriptionWithSnapshot:(id)arg1;
 @property(readonly, copy) NSString *debugDescription;
+@property(readonly) XCUIElement *firstMatch;
 - (id)childrenMatchingType:(unsigned long long)arg1;
 - (id)descendantsMatchingType:(unsigned long long)arg1;
 @property(readonly) _Bool exists;
 @property(readonly, nonatomic) XCUIApplication *application;
-- (id)description;
+@property(readonly, copy) NSString *description;
+- (id)elementBoundByAccessibilityElement;
 - (id)initWithElementQuery:(id)arg1;
-- (void)dealloc;
+- (id)screenshot;
+- (id)_screen;
+- (id)snapshotWithError:(id *)arg1;
+- (_Bool)_shouldDispatchEvent:(id *)arg1;
+- (void)_dispatchEvent:(id)arg1 block:(CDUnknownBlockType)arg2;
+- (_Bool)_dispatchEvent:(CDUnknownBlockType)arg1 error:(id *)arg2;
+- (void)typeText:(id)arg1;
 - (void)rotate:(double)arg1 withVelocity:(double)arg2;
 - (void)pinchWithScale:(double)arg1 velocity:(double)arg2;
-- (void)typeText:(id)arg1;
 - (void)swipeRight;
 - (void)swipeLeft;
 - (void)swipeDown;
 - (void)swipeUp;
+- (void)_swipe:(unsigned long long)arg1;
 - (void)pressForDuration:(double)arg1 thenDragToElement:(id)arg2;
 - (void)pressForDuration:(double)arg1;
+- (void)_tapWithNumberOfTaps:(unsigned long long)arg1 numberOfTouches:(unsigned long long)arg2 activityTitle:(id)arg3;
+- (id)_highestNonWindowAncestorOfElement:(id)arg1 notSharedWithElement:(id)arg2;
+- (id)_pointsInFrame:(struct CGRect)arg1 numberOfTouches:(unsigned long long)arg2;
 - (void)tapWithNumberOfTaps:(unsigned long long)arg1 numberOfTouches:(unsigned long long)arg2;
 - (void)twoFingerTap;
 - (void)doubleTap;
 - (void)tap;
-- (struct CGPoint)_hitPointByAttemptingToScrollToVisibleSnapshot:(id)arg1;
-- (void)_dispatchEvent:(id)arg1 block:(CDUnknownBlockType)arg2;
+- (id)_hitPointByAttemptingToScrollToVisibleSnapshot:(id)arg1 error:(id *)arg2;
 @property(readonly) double normalizedSliderPosition;
 - (void)adjustToNormalizedSliderPosition:(double)arg1;
 - (void)adjustToPickerWheelValue:(id)arg1;
+- (void)tapOrClick;
+- (void)forcePress;
+
+// Remaining properties
+@property(readonly) unsigned long long hash;
+@property(readonly) Class superclass;
 
 @end
 

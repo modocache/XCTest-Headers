@@ -12,19 +12,21 @@
 
 @interface XCSourceCodeTreeNode : NSObject <NSSecureCoding>
 {
-    NSString *_sourceCodePrefix;
-    NSString *_sourceCodeSuffix;
     NSArray *_childNodes;
     long long _selectedChildNodeIndex;
+    NSString *_sourceCodePrefix;
+    NSString *_sourceCodeSuffix;
     XCSourceCodeTreeNode *_parentNode;
-    NSSet *_identifierValues;
-    NSNumber *_index;
-    NSString *_queryType;
-    NSNumber *_returnType;
-    NSNumber *_calleeType;
-    NSNumber *_elementType;
+    NSSet *__identifierValues;
+    NSNumber *__index;
+    NSString *__queryType;
+    NSNumber *__returnType;
+    NSNumber *__calleeType;
+    NSNumber *__elementType;
 }
 
++ (id)_stringByDecodingSourceCode:(id)arg1;
++ (id)_stringByEncodingSourceCode:(id)arg1;
 + (id)_stringRepresentationsOfNodesAsSeparateLines:(id)arg1 language:(unsigned long long)arg2 options:(unsigned long long)arg3 error:(id *)arg4;
 + (id)stringRepresentationsOfNodesAsSeparateLines:(id)arg1 language:(unsigned long long)arg2 error:(id *)arg3;
 + (unsigned long long)_defaultOptions;
@@ -38,12 +40,16 @@
 + (_Bool)_isContentEqualIgnoringSelection:(_Bool)arg1 childNodes:(id)arg2 childNodes:(id)arg3 toDistanceFromRoot:(long long)arg4;
 + (id)_nodesByMergingSimilarNodes:(id)arg1;
 + (void)_shareSourceCodeStringsForNodes:(id)arg1;
-@property(copy, setter=_setElementType:) NSNumber *_elementType; // @synthesize _elementType;
-@property(copy, setter=_setCalleeType:) NSNumber *_calleeType; // @synthesize _calleeType;
-@property(copy, setter=_setReturnType:) NSNumber *_returnType; // @synthesize _returnType;
-@property(copy, setter=_setQueryType:) NSString *_queryType; // @synthesize _queryType;
-@property(copy, setter=_setIndex:) NSNumber *_index; // @synthesize _index;
-@property(copy, setter=_setIdentifierValues:) NSSet *_identifierValues; // @synthesize _identifierValues;
+@property(copy, setter=_setElementType:) NSNumber *_elementType; // @synthesize _elementType=__elementType;
+@property(copy, setter=_setCalleeType:) NSNumber *_calleeType; // @synthesize _calleeType=__calleeType;
+@property(copy, setter=_setReturnType:) NSNumber *_returnType; // @synthesize _returnType=__returnType;
+@property(copy, setter=_setQueryType:) NSString *_queryType; // @synthesize _queryType=__queryType;
+@property(copy, setter=_setIndex:) NSNumber *_index; // @synthesize _index=__index;
+@property(copy, setter=_setIdentifierValues:) NSSet *_identifierValues; // @synthesize _identifierValues=__identifierValues;
+@property __weak XCSourceCodeTreeNode *parentNode; // @synthesize parentNode=_parentNode;
+@property(copy) NSString *sourceCodeSuffix; // @synthesize sourceCodeSuffix=_sourceCodeSuffix;
+@property(copy) NSString *sourceCodePrefix; // @synthesize sourceCodePrefix=_sourceCodePrefix;
+- (void).cxx_destruct;
 - (void)_absorbOnlyChildrenIntoParents;
 - (id)_treeByPushingOutPrefix:(id *)arg1 error:(id *)arg2;
 - (id)copy;
@@ -78,12 +84,8 @@
 @property(retain) NSArray *childNodes;
 - (_Bool)setChildNodes:(id)arg1 error:(id *)arg2;
 - (_Bool)_canHaveSiblingNode:(id)arg1;
-@property(copy) NSString *sourceCodeSuffix;
-@property(copy) NSString *sourceCodePrefix;
-@property __weak XCSourceCodeTreeNode *parentNode;
 @property(readonly) XCSourceCodeTreeNode *rootNode;
 @property(readonly, copy) NSString *displayName;
-- (void)dealloc;
 - (id)initWithSourceCodePrefix:(id)arg1 sourceCodeSuffix:(id)arg2;
 - (id)init;
 

@@ -20,6 +20,7 @@
 + (BOOL)supportsSecureCoding;
 @property(readonly) long long interfaceOrientation; // @synthesize interfaceOrientation=_interfaceOrientation;
 @property(readonly, copy) NSString *name; // @synthesize name=_name;
+- (void).cxx_destruct;
 - (id)description;
 @property(readonly) double maximumOffset;
 - (void)addPointerEventPath:(id)arg1;
@@ -28,7 +29,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithName:(id)arg1 interfaceOrientation:(long long)arg2;
 - (id)init;
-- (void)dealloc;
 
 @end
 

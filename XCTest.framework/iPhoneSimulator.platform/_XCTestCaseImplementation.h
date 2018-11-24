@@ -6,22 +6,17 @@
 
 #import "NSObject.h"
 
-@class NSArray, NSInvocation, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>, NSString, XCTestCaseRun, XCTestContext;
+@class NSArray, NSDictionary, NSInvocation, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet, NSString, NSThread, XCTAttachmentManager, XCTWaiter, XCTestCaseRun, XCUITestContext;
 
 @interface _XCTestCaseImplementation : NSObject
 {
     NSInvocation *_invocation;
+    NSThread *_primaryThread;
     XCTestCaseRun *_testCaseRun;
     _Bool _continueAfterFailure;
     NSMutableSet *_expectations;
-    NSMutableArray *_fulfillments;
-    NSObject<OS_dispatch_source> *_timeoutSource;
-    double _timeoutDuration;
-    _Bool _waiting;
-    CDUnknownBlockType _completionHandler;
-    NSArray *_performanceMetricIDs;
     NSArray *_activePerformanceMetricIDs;
-    NSMutableDictionary *_perfMetricDataForID;
+    NSMutableDictionary *_perfMetricsForID;
     unsigned long long _startWallClockTime;
     struct time_value _startUserTime;
     struct time_value _startSystemTime;
@@ -30,33 +25,36 @@
     _Bool _didMeasureMetrics;
     _Bool _didStartMeasuring;
     _Bool _didStopMeasuring;
-    NSString *_filePathForUnexpectedFailure;
-    unsigned long long _lineNumberForUnexpectedFailure;
-    unsigned long long _callAddressForCurrentWait;
-    NSArray *_callAddressesForLastCreatedExpectation;
+    NSString *_filePathForNestedFailure;
+    unsigned long long _lineNumberForNestedFailure;
     long long _runLoopNestingCount;
+    XCTWaiter *_currentWaiter;
     NSMutableArray *_failureRecords;
     _Bool _shouldHaltWhenReceivesControl;
+    _Bool _shouldSetShouldHaltWhenReceivesControl;
     _Bool _shouldIgnoreSubsequentFailures;
-    NSMutableArray *_activityRecordStack;
-    XCTestContext *_testContext;
+    NSMutableArray *_teardownBlocks;
+    _Bool _hasDequeuedTeardownBlocks;
+    _Bool _hasAttemptedToCaptureScreenshotOnFailure;
+    XCTAttachmentManager *_attachmentManager;
+    NSDictionary *_activityAggregateStatistics;
+    XCUITestContext *_testContext;
 }
 
-@property(readonly) XCTestContext *testContext; // @synthesize testContext=_testContext;
-@property(retain, nonatomic) NSMutableArray *activityRecordStack; // @synthesize activityRecordStack=_activityRecordStack;
+@property(readonly) XCUITestContext *testContext; // @synthesize testContext=_testContext;
+@property(copy) NSDictionary *activityAggregateStatistics; // @synthesize activityAggregateStatistics=_activityAggregateStatistics;
+@property(retain) XCTAttachmentManager *attachmentManager; // @synthesize attachmentManager=_attachmentManager;
+@property _Bool hasAttemptedToCaptureScreenshotOnFailure; // @synthesize hasAttemptedToCaptureScreenshotOnFailure=_hasAttemptedToCaptureScreenshotOnFailure;
+@property _Bool hasDequeuedTeardownBlocks; // @synthesize hasDequeuedTeardownBlocks=_hasDequeuedTeardownBlocks;
+@property(readonly) NSMutableArray *teardownBlocks; // @synthesize teardownBlocks=_teardownBlocks;
+@property(retain, nonatomic) XCTWaiter *currentWaiter; // @synthesize currentWaiter=_currentWaiter;
 @property _Bool shouldIgnoreSubsequentFailures; // @synthesize shouldIgnoreSubsequentFailures=_shouldIgnoreSubsequentFailures;
+@property _Bool shouldSetShouldHaltWhenReceivesControl; // @synthesize shouldSetShouldHaltWhenReceivesControl=_shouldSetShouldHaltWhenReceivesControl;
 @property _Bool shouldHaltWhenReceivesControl; // @synthesize shouldHaltWhenReceivesControl=_shouldHaltWhenReceivesControl;
 @property(retain, nonatomic) NSMutableArray *failureRecords; // @synthesize failureRecords=_failureRecords;
 @property long long runLoopNestingCount; // @synthesize runLoopNestingCount=_runLoopNestingCount;
-@property(nonatomic) NSObject<OS_dispatch_source> *timeoutSource; // @synthesize timeoutSource=_timeoutSource;
-@property(copy) NSArray *callAddressesForLastCreatedExpectation; // @synthesize callAddressesForLastCreatedExpectation=_callAddressesForLastCreatedExpectation;
-@property unsigned long long callAddressForCurrentWait; // @synthesize callAddressForCurrentWait=_callAddressForCurrentWait;
-@property unsigned long long lineNumberForUnexpectedFailure; // @synthesize lineNumberForUnexpectedFailure=_lineNumberForUnexpectedFailure;
-@property(copy) NSString *filePathForUnexpectedFailure; // @synthesize filePathForUnexpectedFailure=_filePathForUnexpectedFailure;
-@property(copy) CDUnknownBlockType completionHandler; // @synthesize completionHandler=_completionHandler;
-@property double timeoutDuration; // @synthesize timeoutDuration=_timeoutDuration;
-@property _Bool waiting; // @synthesize waiting=_waiting;
-@property(retain, nonatomic) NSMutableArray *fulfillments; // @synthesize fulfillments=_fulfillments;
+@property unsigned long long lineNumberForNestedFailure; // @synthesize lineNumberForNestedFailure=_lineNumberForNestedFailure;
+@property(copy) NSString *filePathForNestedFailure; // @synthesize filePathForNestedFailure=_filePathForNestedFailure;
 @property(retain, nonatomic) NSMutableSet *expectations; // @synthesize expectations=_expectations;
 @property _Bool didStopMeasuring; // @synthesize didStopMeasuring=_didStopMeasuring;
 @property _Bool didStartMeasuring; // @synthesize didStartMeasuring=_didStartMeasuring;
@@ -66,12 +64,15 @@
 @property struct time_value startUserTime; // @synthesize startUserTime=_startUserTime;
 @property struct time_value startSystemTime; // @synthesize startSystemTime=_startSystemTime;
 @property unsigned long long startWallClockTime; // @synthesize startWallClockTime=_startWallClockTime;
-@property(retain) NSMutableDictionary *perfMetricDataForID; // @synthesize perfMetricDataForID=_perfMetricDataForID;
+@property(retain) NSMutableDictionary *perfMetricsForID; // @synthesize perfMetricsForID=_perfMetricsForID;
 @property(copy) NSArray *activePerformanceMetricIDs; // @synthesize activePerformanceMetricIDs=_activePerformanceMetricIDs;
-@property(copy) NSArray *performanceMetricIDs; // @synthesize performanceMetricIDs=_performanceMetricIDs;
 @property _Bool continueAfterFailure; // @synthesize continueAfterFailure=_continueAfterFailure;
 @property(retain) XCTestCaseRun *testCaseRun; // @synthesize testCaseRun=_testCaseRun;
+@property(retain) NSThread *primaryThread; // @synthesize primaryThread=_primaryThread;
 @property(retain) NSInvocation *invocation; // @synthesize invocation=_invocation;
+- (void).cxx_destruct;
+@property(readonly) NSSet *waitedOnExpectations;
+- (void)resetExpectationsInArray:(id)arg1;
 - (void)resetExpectations;
 - (void)addExpectation:(id)arg1;
 - (id)init;

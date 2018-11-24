@@ -14,13 +14,14 @@
 }
 
 + (id)languageAgnosticTestClassNameForTestClass:(Class)arg1;
+- (void).cxx_destruct;
+- (long long)defaultExecutionOrderCompare:(id)arg1;
 @property(readonly) NSString *nameForLegacyLogging;
 @property(readonly) NSString *languageAgnosticTestMethodName;
 @property(readonly) NSString *languageAgnosticTestClassName;
 - (void)tearDown;
 - (void)setUp;
 - (void)runTest;
-- (id)run;
 - (void)performTest:(id)arg1;
 @property(readonly) XCTestRun *testRun;
 @property(readonly) Class testRunClass;
@@ -28,7 +29,9 @@
 @property(readonly, copy) NSString *name;
 @property(readonly) unsigned long long testCaseCount;
 - (id)init;
-- (void)dealloc;
+- (void)removeTestsWithNames:(id)arg1;
+@property(readonly) NSString *_methodNameForReporting;
+@property(readonly) NSString *_classNameForReporting;
 
 @end
 

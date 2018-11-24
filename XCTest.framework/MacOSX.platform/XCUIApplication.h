@@ -6,49 +6,90 @@
 
 #import <XCTest/XCUIElement.h>
 
-@class NSArray, NSDictionary, NSString, XCAccessibilityElement, XCApplicationQuery, XCUIApplicationImpl;
+@class NSArray, NSDictionary, NSString, XCAccessibilityElement, XCApplicationQuery, XCUIApplicationImpl, XCUIApplicationOpenRequest;
 
 @interface XCUIApplication : XCUIElement
 {
     BOOL _ancillary;
+    BOOL _prefersPlatformLauncher;
+    BOOL _suspended;
+    BOOL _doesNotHandleUIInterruptions;
+    BOOL _idleAnimationWaitEnabled;
+    unsigned int _currentInteractionOptions;
+    XCUIApplicationOpenRequest *_lastLaunchRequest;
     XCUIElement *_keyboard;
     NSArray *_launchArguments;
     NSDictionary *_launchEnvironment;
-    XCUIApplicationImpl *_applicationImpl;
     XCApplicationQuery *_applicationQuery;
     unsigned long long _generation;
+    XCUIApplicationImpl *_applicationImpl;
 }
 
++ (id)keyPathsForValuesAffectingForeground;
++ (id)keyPathsForValuesAffectingBackground;
 + (id)keyPathsForValuesAffectingRunning;
-+ (id)appWithPID:(int)arg1;
-@property unsigned long long generation; // @synthesize generation=_generation;
-@property(retain) XCApplicationQuery *applicationQuery; // @synthesize applicationQuery=_applicationQuery;
++ (id)keyPathsForValuesAffectingState;
++ (id)keyPathsForValuesAffectingIsApplicationStateKnown;
++ (id)new;
++ (id)applicationWithPID:(int)arg1;
+@property(getter=isIdleAnimationWaitEnabled) BOOL idleAnimationWaitEnabled; // @synthesize idleAnimationWaitEnabled=_idleAnimationWaitEnabled;
+@property(nonatomic) BOOL doesNotHandleUIInterruptions; // @synthesize doesNotHandleUIInterruptions=_doesNotHandleUIInterruptions;
+@property(readonly) BOOL suspended; // @synthesize suspended=_suspended;
+@property BOOL prefersPlatformLauncher; // @synthesize prefersPlatformLauncher=_prefersPlatformLauncher;
 @property(readonly) XCUIApplicationImpl *applicationImpl; // @synthesize applicationImpl=_applicationImpl;
 @property BOOL ancillary; // @synthesize ancillary=_ancillary;
+@property unsigned int currentInteractionOptions; // @synthesize currentInteractionOptions=_currentInteractionOptions;
+@property unsigned long long generation; // @synthesize generation=_generation;
+@property(retain) XCApplicationQuery *applicationQuery; // @synthesize applicationQuery=_applicationQuery;
 @property(copy, nonatomic) NSDictionary *launchEnvironment; // @synthesize launchEnvironment=_launchEnvironment;
 @property(copy, nonatomic) NSArray *launchArguments; // @synthesize launchArguments=_launchArguments;
 @property(readonly) XCUIElement *keyboard; // @synthesize keyboard=_keyboard;
-- (void)_restoreActiveState;
+@property(retain) XCUIApplicationOpenRequest *lastLaunchRequest; // @synthesize lastLaunchRequest=_lastLaunchRequest;
+- (void).cxx_destruct;
 @property(readonly) long long activationPolicy;
 - (void)_waitForQuiescence;
+@property(readonly) BOOL hasAutomationSession;
+@property(readonly) BOOL backgroundInteractionAllowed;
+@property(readonly) BOOL shouldSkipPostEventQuiescence;
+@property(readonly) BOOL shouldSkipPreEventQuiescence;
+- (void)_performWithInteractionOptions:(unsigned int)arg1 block:(CDUnknownBlockType)arg2;
 - (void)terminate;
+- (void)_activate;
+- (void)activate;
 - (void)_launchUsingXcode:(BOOL)arg1;
 - (void)launch;
-- (id)application;
-@property(readonly, nonatomic) BOOL running;
+- (id)_combinedLaunchEnvironment;
+- (id)_combinedLaunchArguments;
+- (BOOL)waitForState:(unsigned long long)arg1 timeout:(double)arg2;
+@property(readonly) BOOL foreground;
+@property(readonly) BOOL background;
+@property(readonly) BOOL running;
+@property(readonly) int bridgedProcessID;
 @property(nonatomic) int processID;
 @property(nonatomic) unsigned long long state;
+- (BOOL)isApplicationStateKnown;
+- (void)resetAlertCount;
+@property(readonly) BOOL shouldBeCheckedForAlerts;
+- (BOOL)exists;
+- (id)application;
+@property(readonly) id <XCTRunnerAutomationSession> bridgedProcessAutomationSession;
+@property(readonly) id <XCTRunnerAutomationSession> automationSession;
 - (id)description;
-- (id)lastSnapshot;
 - (id)query;
 - (void)clearQuery;
+- (void)resolveHandleUIInterruption:(BOOL)arg1;
+@property(readonly) XCAccessibilityElement *bridgedProcessAccessibilityElement;
 @property(readonly) XCAccessibilityElement *accessibilityElement;
 - (unsigned long long)elementType;
 @property(readonly) NSString *bundleID;
 @property(readonly) NSString *path;
+- (void)commonInitWithApplicationImpl:(id)arg1 isTestDependency:(BOOL)arg2;
 - (id)initPrivateWithPath:(id)arg1 bundleID:(id)arg2;
+- (id)initWithLaunchServicesInfo:(id)arg1;
+- (id)initWithURL:(id)arg1;
+- (id)initWithBundleIdentifier:(id)arg1;
 - (id)init;
-- (void)dealloc;
+- (id)initWithElementQuery:(id)arg1;
 
 @end
 
